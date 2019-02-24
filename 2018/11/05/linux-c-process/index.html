@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="进程的概念进程是程序执行的过程，包括了动态创建、调度和消亡的整个过程。进程是程序执行和资源管理的最小单位。父进程:创建其他进程的进程。子进程:被其他进程创建的进程。僵尸进程:已终止运行，但尚末被清除的进程，又称为过渡进程。守护进程:运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。">
+<meta name="keywords" content="linux,c,进程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux进程相关函数">
+<meta property="og:url" content="http://yoursite.com/2018/11/05/linux-c-process/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="进程的概念进程是程序执行的过程，包括了动态创建、调度和消亡的整个过程。进程是程序执行和资源管理的最小单位。父进程:创建其他进程的进程。子进程:被其他进程创建的进程。僵尸进程:已终止运行，但尚末被清除的进程，又称为过渡进程。守护进程:运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-07T14:16:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux进程相关函数">
+<meta name="twitter:description" content="进程的概念进程是程序执行的过程，包括了动态创建、调度和消亡的整个过程。进程是程序执行和资源管理的最小单位。父进程:创建其他进程的进程。子进程:被其他进程创建的进程。僵尸进程:已终止运行，但尚末被清除的进程，又称为过渡进程。守护进程:运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/05/linux-c-process/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>linux进程相关函数 | 我的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">我的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">记录时光，记录生活。</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/05/linux-c-process/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cp">
+      <meta itemprop="description" content="一个不知名的博客。">
+      <meta itemprop="image" content="/uploads/image.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">linux进程相关函数
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-05 16:50:58" itemprop="dateCreated datePublished" datetime="2018-11-05T16:50:58+08:00">2018-11-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-07 22:16:50" itemprop="dateModified" datetime="2018-11-07T22:16:50+08:00">2018-11-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h4><p>进程是程序执行的过程，包括了动态创建、调度和消亡的整个过程。进程是程序执行和资源管理的最小单位。<br><strong>父进程</strong>:创建其他进程的进程。<br><strong>子进程</strong>:被其他进程创建的进程。<br><strong>僵尸进程</strong>:已终止运行，但尚末被清除的进程，又称为过渡进程。<br><strong>守护进程</strong>:运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。<br><a id="more"></a></p>
+<h4 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h4><h5 id="进程创建"><a href="#进程创建" class="headerlink" title="进程创建"></a>进程创建</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pid_t</span> fork(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code><br>功能:父进程中创建一个子进程，子进程是父进程的拷贝<br>返回值:<br>成功<br>0:当前进程为子进程<br>>0:当前进程为父进程,其值为子进程的进程号<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pid_t</span> getpid(<span class="keyword">void</span>);</span><br><span class="line"><span class="keyword">pid_t</span> getppid(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code><br>功能:获取当前进程(getpid)或者当前进程的父进程(getppid)的进程号<br>返回值:进程号</p>
+</blockquote>
+<h5 id="进程暂停"><a href="#进程暂停" class="headerlink" title="进程暂停"></a>进程暂停</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">sleep</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">int</span> seconeds)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code><br>功能:使当前进程停止执行seconeds秒<br>返回值:<br>成功:0<br>失败:>0,其值为剩余秒数</p>
+</blockquote>
+<h5 id="进程退出"><a href="#进程退出" class="headerlink" title="进程退出"></a>进程退出</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exit</span><span class="params">(<span class="keyword">int</span> status)</span></span>;</span><br><span class="line"><span class="keyword">void</span> _exit(<span class="keyword">int</span> status);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;stdlib.h&gt;</code><br>功能:使当前进程终止,并将status返回给父进程<br>返回值:无<br>区别:exit会调用退出处理函数并清理I/O缓存再调用exit系统调用,_exit直接调用exit系统调用</p>
+</blockquote>
+<h5 id="进程等待"><a href="#进程等待" class="headerlink" title="进程等待"></a>进程等待</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pid_t</span> wait(<span class="keyword">int</span> *status);</span><br><span class="line"><span class="keyword">pid_t</span> waitpid(<span class="keyword">pid_t</span> pid,<span class="keyword">int</span> *status,<span class="keyword">int</span> options);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;sys/types.h&gt;</code> <code>#include &lt;sys/wait.h&gt;</code><br>功能:等待进程结束,并将退出状态写入status<br>返回值:<br>成功:>0，其值为子进程进程号<br>失败:-1</p>
+</blockquote>
+<h4 id="守护进程"><a href="#守护进程" class="headerlink" title="守护进程"></a>守护进程</h4><p>守护进程最重要的特性是后台运行。<br>其次，守护进程必须与其运行前的环境隔离开来。这些环境包括未关闭的文件描述符，控制终端，会话和进程组，工作目录以及文件创建掩码等。这些环境通常是守护进程从执行它的父进程中继承下来的。<br>最后，守护进程的启动方式有其特殊之处。它可以在Linux系统启动时从启动脚本/etc/rc.d中启动，也可以由作业规划进程crond启动，还可以由用户终端执行。 </p>
+<h5 id="创建守护进程"><a href="#创建守护进程" class="headerlink" title="创建守护进程"></a>创建守护进程</h5><p>1.创建子进程,终止父进程<br>2.在子进程中创建新的会话<br>3.改变工作目录<br>4.重设文件创建掩码<br>5.关闭文件描述符</p>
+<h4 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h4><p>进程之间要交换数据必须通过内核，在内核中开辟一块缓冲区，P1进程把数据从用户空间拷到内核缓冲区，P2进程再从内核缓冲区把数据读走。内核提供的这种机制称为进程间通信(IPC,InterProcess Communication)。</p>
+<h5 id="信号"><a href="#信号" class="headerlink" title="信号"></a>信号</h5><p>信号是在软件层次上对中断机制的一种模拟，是一种异步通信方式。信号可以直接进行用户空间进程和内核进程之间的交互，内核进程也可以利用它来通知用户空间进程发生了哪些系统事件。<br>一旦有信号产生，用户进程对信号的响应有3种方式:<br>执行默认操作。<br>捕捉信号。定义信号处理函数，当信号发生时，执行相应的处理函数。<br>忽略信号。不希望接收到的信号对进程的执行产生影响，而让进程继续进行时，可以忽略该信号，即不对信号进程任何处理。</p>
+<h6 id="信号发送"><a href="#信号发送" class="headerlink" title="信号发送"></a>信号发送</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">raise</span><span class="params">(<span class="keyword">int</span> sig)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;signal.h&gt;</code><br>功能:发送sig信号给当前进程<br>返回值:<br>成功:0，其值为子进程进程号<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kill</span><span class="params">(<span class="keyword">pid_t</span> pid,<span class="keyword">int</span> sig)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;signal.h&gt;</code> <code>#include &lt;sys/types.h&gt;</code><br>功能:发送sig信号给pid代表的进程<br>返回值:<br>0:成功，其值为子进程进程号<br>-1:失败</p>
+</blockquote>
+<h6 id="信号处理"><a href="#信号处理" class="headerlink" title="信号处理"></a>信号处理</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> (*signal(<span class="keyword">int</span> signum,<span class="keyword">void</span>(*handle(<span class="keyword">int</span>)))<span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;signal.h&gt;</code><br>功能:捕获signum信号交由handle函数处理<br>返回值:<br>成功:先前的函数处理函数的指针<br>失败:SIG_EER(-1)</p>
+</blockquote>
+<h6 id="信号阻塞"><a href="#信号阻塞" class="headerlink" title="信号阻塞"></a>信号阻塞</h6><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigemptyset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigfillset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigaddset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigdelset</span><span class="params">(<span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigismember</span><span class="params">(<span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>, <span class="keyword">int</span> signo)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;signal.h&gt;</code><br>功能:信号集合操作<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sigprocmask</span><span class="params">(<span class="keyword">int</span> how,<span class="keyword">const</span> <span class="keyword">sigset_t</span> *<span class="built_in">set</span>,<span class="keyword">sigset_t</span> *old_set)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;signal.h&gt;</code><br>功能:查询或设置掩码,how表示执行的操作<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+<h5 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h5><p>管道是一种特殊的文件，对一个进程来说，管道的写入和读取与一个普通文件没有区别。<br>管道是半双工的，数据只能向一个方向流动;<br>若要双方通信时,需要建立起两个管道;<br>只能用于父子进程或者兄弟进程之间;<br>单独构成一种独立的文件系统:管道对于管道两端的进程而言,就是一个文件,但它不是普通的文件,它不属于某种文件系统,而是单独构成一种文件系统，并且只存在与内存中。 </p>
+<h6 id="无名管道"><a href="#无名管道" class="headerlink" title="无名管道"></a>无名管道</h6><p>1.父进程调用pipe开辟管道,得到两个文件描述符指向管道的两端;<br>2.父进程调用fork创建子进程，那么子进程也有两个文件描述符指向同一管道;<br>3.父进程关闭管道读取端，子进程关闭管道写入端。父进程可以往管道里写，子进程可以从管道里读，管道是用环形队列实现的，数据从写入端流入从读取端流出，这样就实现了进程间通信。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">pipe</span><span class="params">(<span class="keyword">int</span>  filedes[<span class="number">2</span>])</span></span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code><br>功能:建立管道,将文件描述符写入filedes<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">FILE* <span class="title">popen</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *command,<span class="keyword">char</span> *type)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;stdio.h&gt;</code><br>功能:fork产生子进程,在子进程中执行command<br>返回值:<br>成功:返回文件指针<br>失败:NULL</p>
+</blockquote>
+<h6 id="命名管道"><a href="#命名管道" class="headerlink" title="命名管道"></a>命名管道</h6><p>在两个不相关的进程之间用管道通信，需要用到命名管道FIFO。<br>1.应用函数mkfifo建立一个命名管道;<br>2.根据读写方式用函数open打开这个命名管道;<br>3.用宏建立文件描述符集合，设定等待时间，使用函数select实现非阻塞传送;<br>4.用read、write读写管道;<br>5.读写完成关闭管道。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mkfifo</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * pathname,<span class="keyword">mode_t</span> mode)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>头文件:<code>#include &lt;stdio.h&gt;</code><br>功能:建立命名管道,pathname文件必须不存在<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+<h5 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h5><p>消息队列，就是一个消息的链表，是一系列保存在内核中的消息的列表。用户进程可以向消息队列添加消息，也可以从消息队列读取消息。<br>1.使用ftok函数可以将不同的进程通过同一个文件访问相同的消息队列;<br>2.应用ftok函数返回值key作为msgget函数参数，产生一个消息队列;<br>3.进程可以用msgsnd发送消息到这个队列，相应的别的进程用msgrcv读取;<br>4.msgctl函数可以用来删除消息队列。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">key_t</span> ftok(<span class="keyword">char</span> * pathname,<span class="keyword">char</span> proj);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>头文件:<code>#include &lt;sys/types.h&gt;</code> <code>#include &lt;sys/ipc.h&gt;</code><br>功能:由pathname和proj生成标准的key<br>返回值:<br>成功:key_t<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msgget</span><span class="params">(<span class="keyword">key_t</span> key,<span class="keyword">int</span> msgflg)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;sys/types.h&gt;</code> <code>#include &lt;sys/ipc.h&gt;</code> <code>#include &lt;sys/msg.h&gt;</code><br>功能:由key建立消息队列<br>返回值:<br>成功:消息队列识别号<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msgsnd</span><span class="params">(<span class="keyword">int</span> msqid,struct msgbuf* msgp,<span class="keyword">int</span> msgsz,<span class="keyword">int</span> msgflg)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;sys/types.h&gt;</code> <code>#include &lt;sys/ipc.h&gt;</code> <code>#include &lt;sys/msg.h&gt;</code><br>功能:将消息送入消息队列<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msgrcv</span><span class="params">(<span class="keyword">int</span> msqid,struct msgbuf* msgp,<span class="keyword">int</span> msgsz,<span class="keyword">long</span> msgtype,<span class="keyword">int</span> msgflg)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;sys/types.h&gt;</code> <code>#include &lt;sys/ipc.h&gt;</code> <code>#include &lt;sys/msg.h&gt;</code><br>功能:从消息队列读取消息<br>返回值:<br>成功:实际的消息长度<br>失败:-1</p>
+</blockquote>
+<h5 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h5><p>共享内存允许两个或多个进程共享一给定的存储区，因为数据不需要来回复制，所以是最快的一种进程间通信机制。<br>共享内存可以通过mmap系统调用(特殊情况下还可以采用匿名映射)机制实现，也可以通过系统V共享内存机制实现。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">mmap</span><span class="params">(<span class="keyword">void</span> *start,<span class="keyword">size_t</span> length,<span class="keyword">int</span> prot,<span class="keyword">int</span> flag,<span class="keyword">int</span> fd,<span class="keyword">off_t</span> offsize)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code> <code>#include &lt;sys/mman.h&gt;</code><br>功能:建立内存映射<br>返回值:<br>成功:内存起始地址<br>失败:-1</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">unmmap</span><span class="params">(<span class="keyword">void</span> *start,<span class="keyword">size_t</span> length)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>头文件:<code>#include &lt;unistd.h&gt;</code> <code>#include &lt;sys/mman.h&gt;</code><br>功能:取消内存映射<br>返回值:<br>成功:0<br>失败:-1</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+            <a href="/tags/进程/" rel="tag"># 进程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/09/java-thread/" rel="next" title="java多线程">
+                <i class="fa fa-chevron-left"></i> java多线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/image.jpg" alt="cp">
+            
+              <p class="site-author-name" itemprop="name">cp</p>
+              <p class="site-description motion-element" itemprop="description">一个不知名的博客。</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#进程的概念"><span class="nav-number">1.</span> <span class="nav-text">进程的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程控制"><span class="nav-number">2.</span> <span class="nav-text">进程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#进程创建"><span class="nav-number">2.1.</span> <span class="nav-text">进程创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程暂停"><span class="nav-number">2.2.</span> <span class="nav-text">进程暂停</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程退出"><span class="nav-number">2.3.</span> <span class="nav-text">进程退出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程等待"><span class="nav-number">2.4.</span> <span class="nav-text">进程等待</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#守护进程"><span class="nav-number">3.</span> <span class="nav-text">守护进程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建守护进程"><span class="nav-number">3.1.</span> <span class="nav-text">创建守护进程</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程通信"><span class="nav-number">4.</span> <span class="nav-text">进程通信</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#信号"><span class="nav-number">4.1.</span> <span class="nav-text">信号</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#信号发送"><span class="nav-number">4.1.1.</span> <span class="nav-text">信号发送</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#信号处理"><span class="nav-number">4.1.2.</span> <span class="nav-text">信号处理</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#信号阻塞"><span class="nav-number">4.1.3.</span> <span class="nav-text">信号阻塞</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#管道"><span class="nav-number">4.2.</span> <span class="nav-text">管道</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#无名管道"><span class="nav-number">4.2.1.</span> <span class="nav-text">无名管道</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#命名管道"><span class="nav-number">4.2.2.</span> <span class="nav-text">命名管道</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#消息队列"><span class="nav-number">4.3.</span> <span class="nav-text">消息队列</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#共享内存"><span class="nav-number">4.4.</span> <span class="nav-text">共享内存</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cp</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
