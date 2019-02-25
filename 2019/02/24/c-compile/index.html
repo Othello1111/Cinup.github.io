@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
-<meta name="keywords" content="no tags">
+  <meta name="description" content="gccgcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。 gcc工作过程">
+<meta name="keywords" content="c,编译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客前言">
-<meta property="og:url" content="http://yoursite.com/2018/09/24/blog-desc/index.html">
+<meta property="og:title" content="c语言编译过程">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/c-compile/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
+<meta property="og:description" content="gccgcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。 gcc工作过程">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-25T01:55:09.781Z">
+<meta property="og:image" content="http://yoursite.com/images/compile.png">
+<meta property="og:updated_time" content="2019-02-24T05:16:24.175Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客前言">
-<meta name="twitter:description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
+<meta name="twitter:title" content="c语言编译过程">
+<meta name="twitter:description" content="gccgcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。 gcc工作过程">
+<meta name="twitter:image" content="http://yoursite.com/images/compile.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/24/blog-desc/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/24/c-compile/">
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>博客前言 | 我的博客</title>
+  <title>c语言编译过程 | 我的博客</title>
   
 
 
@@ -301,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/blog-desc/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/c-compile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cp">
@@ -318,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客前言
+          <h1 class="post-title" itemprop="name headline">c语言编译过程
               
             
           </h1>
@@ -343,24 +345,12 @@
                 
               
 
-              <time title="创建时间：2018-09-24 14:58:59" itemprop="dateCreated datePublished" datetime="2018-09-24T14:58:59+08:00">2018-09-24</time>
+              <time title="创建时间：2019-02-24 12:49:52 / 修改时间：13:16:24" itemprop="dateCreated datePublished" datetime="2019-02-24T12:49:52+08:00">2019-02-24</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-25 09:55:09" itemprop="dateModified" datetime="2019-02-25T09:55:09+08:00">2019-02-25</time>
               
             
           </span>
@@ -377,7 +367,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/c/" itemprop="url" rel="index"><span itemprop="name">c</span></a></span>
 
                 
                 
@@ -411,7 +401,17 @@
       
 
       
-        <p>无意中发现 <strong>Github Pages</strong> 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。<br>于是我也紧随潮流，按照网上的教程使用 <strong>Hexo</strong> + <strong>Github</strong>成功创建了属于自己的<strong>Github Pages</strong>。<br>写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。<br>此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。</p>
+        <h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>gcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。</p>
+<h2 id="gcc工作过程"><a href="#gcc工作过程" class="headerlink" title="gcc工作过程"></a>gcc工作过程</h2><a id="more"></a>
+<p><img src="/images/compile.png" alt="编译过程.png"></p>
+<h3 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h3><p>预处理过程处理宏定义和include，去除注释，不会对语法进行检查。<br>gcc预处理命令为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-E</span> <span class="selector-tag">hello</span><span class="selector-class">.c</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.i</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><p>编译阶段编译器主要做词法分析、语法分析、语义分析等，在检查无错误后，把代码翻译成汇编语言。<br>gcc编译命令为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-S</span> <span class="selector-tag">hello</span><span class="selector-class">.i</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.s</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h3><p>汇编阶段，生成目标代码(二进制文本形式)。<br>gcc汇编命令为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-c</span> <span class="selector-tag">hello</span><span class="selector-class">.s</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.o</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>链接过程。生成可执行代码。链接分为两种，一种是静态链接，另外一种是动态链接。使用静态链接的好处是，依赖的动态链接库较少，对动态链接库的版本不会很敏感，具有较好的兼容性；缺点是生成的程序比较大。使用动态链接的好处是，生成的程序比较小，占用较少的内存。</p>
+<pre><code>1. gcc -I(大写i)  dir 指定头文件路径
+2. gcc -l library 指定库名
+3. gcc -L dir 指定库路径
+</code></pre><h3 id="合并"><a href="#合并" class="headerlink" title="合并"></a>合并</h3><p>上述过程可以一次性完成<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc  hello<span class="selector-class">.c</span> -o hello</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -432,7 +432,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/no-tags/" rel="tag"># no tags</a>
+            <a href="/tags/c/" rel="tag"># c</a>
+          
+            <a href="/tags/编译/" rel="tag"># 编译</a>
           
         </div>
       
@@ -445,14 +447,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/05/linux-c-process/" rel="next" title="linux进程相关函数">
+                <i class="fa fa-chevron-left"></i> linux进程相关函数
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/01/base64/" rel="prev" title="base64编码">
-                base64编码 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/25/linux/" rel="prev" title="深入理解Linux内核">
+                深入理解Linux内核 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -498,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -596,6 +611,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gcc"><span class="nav-number">1.</span> <span class="nav-text">gcc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gcc工作过程"><span class="nav-number">2.</span> <span class="nav-text">gcc工作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预处理"><span class="nav-number">2.1.</span> <span class="nav-text">预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译"><span class="nav-number">2.2.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#汇编"><span class="nav-number">2.3.</span> <span class="nav-text">汇编</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链接"><span class="nav-number">2.4.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并"><span class="nav-number">2.5.</span> <span class="nav-text">合并</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

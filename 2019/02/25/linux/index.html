@@ -108,25 +108,30 @@
 
 
 
-  <meta name="description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
-<meta name="keywords" content="no tags">
+  <meta name="description" content="简介这篇是&amp;lt;深入理解Linux&amp;gt;内核第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   硬件中的分段      Linux中的分段      内存寻址简介本节介绍寻址技术。">
+<meta name="keywords" content="linux,操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客前言">
-<meta property="og:url" content="http://yoursite.com/2018/09/24/blog-desc/index.html">
+<meta property="og:title" content="深入理解Linux内核">
+<meta property="og:url" content="http://yoursite.com/2019/02/25/linux/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
+<meta property="og:description" content="简介这篇是&amp;lt;深入理解Linux&amp;gt;内核第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   硬件中的分段      Linux中的分段      内存寻址简介本节介绍寻址技术。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-25T01:55:09.781Z">
+<meta property="og:image" content="http://yoursite.com/images/segment.png">
+<meta property="og:image" content="http://yoursite.com/images/segment_1.png">
+<meta property="og:image" content="http://yoursite.com/images/segment_2.png">
+<meta property="og:image" content="http://yoursite.com/images/segment_3.png">
+<meta property="og:updated_time" content="2019-02-25T06:13:13.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="博客前言">
-<meta name="twitter:description" content="无意中发现 Github Pages 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。于是我也紧随潮流，按照网上的教程使用 Hexo + Github成功创建了属于自己的Github Pages。写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。">
+<meta name="twitter:title" content="深入理解Linux内核">
+<meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux&amp;gt;内核第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   硬件中的分段      Linux中的分段      内存寻址简介本节介绍寻址技术。">
+<meta name="twitter:image" content="http://yoursite.com/images/segment.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/24/blog-desc/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/25/linux/">
 
 
 
@@ -136,7 +141,7 @@
   };
 </script>
 
-  <title>博客前言 | 我的博客</title>
+  <title>深入理解Linux内核 | 我的博客</title>
   
 
 
@@ -301,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/blog-desc/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/25/linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cp">
@@ -318,7 +323,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">博客前言
+          <h1 class="post-title" itemprop="name headline">深入理解Linux内核
               
             
           </h1>
@@ -343,24 +348,12 @@
                 
               
 
-              <time title="创建时间：2018-09-24 14:58:59" itemprop="dateCreated datePublished" datetime="2018-09-24T14:58:59+08:00">2018-09-24</time>
+              <time title="创建时间：2019-02-25 09:47:20 / 修改时间：14:13:13" itemprop="dateCreated datePublished" datetime="2019-02-25T09:47:20+08:00">2019-02-25</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-25 09:55:09" itemprop="dateModified" datetime="2019-02-25T09:55:09+08:00">2019-02-25</time>
               
             
           </span>
@@ -377,7 +370,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
 
                 
                 
@@ -411,7 +404,100 @@
       
 
       
-        <p>无意中发现 <strong>Github Pages</strong> 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。<br>于是我也紧随潮流，按照网上的教程使用 <strong>Hexo</strong> + <strong>Github</strong>成功创建了属于自己的<strong>Github Pages</strong>。<br>写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。<br>此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇是&lt;深入理解Linux&gt;内核第三版的读书笔记，会在阅读完一章后进行更新。</p>
+<ul>
+<li>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。<ul>
+<li><ul>
+<li style="list-style: none"><input type="checkbox" checked> 硬件中的分段    </li>
+<li style="list-style: none"><input type="checkbox"> Linux中的分段</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="内存寻址"><a href="#内存寻址" class="headerlink" title="内存寻址"></a>内存寻址</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>本节介绍寻址技术。</p>
+<a id="more"></a>
+<h3 id="内存地址"><a href="#内存地址" class="headerlink" title="内存地址"></a>内存地址</h3><p>在编程中偶尔会使用内存地址作为访问内存单元内容的一种方式，当使用80x86处理器时，需要区分三种不同的地址:</p>
+<ul>
+<li><p>逻辑地址</p>
+<p>每一个逻辑地址都由一个<strong>段(segment)</strong>和<strong>偏移量(offset)</strong>组成。</p>
+</li>
+<li><p>线性地址(虚拟地址)</p>
+<p>是一个32位无符号整数，可以用来表示高达<strong>4GB(2^32)</strong>的地址。</p>
+</li>
+<li><p>物理地址</p>
+<p>用于内存芯片内存单元寻址。</p>
+</li>
+</ul>
+<p>内存控制单元通过一种称为分段单元的硬件电路把一个逻辑地址转换成线性地址，接着，再通过一种称为分页单元的硬件电路把线性地址转化成一个物理地址。</p>
+<center><strong>逻辑地址—(分段单元)—&gt;线性地址—(分页单元)—&gt;物理地址</strong></center>
+
+<h3 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h3><h4 id="分段的原因"><a href="#分段的原因" class="headerlink" title="分段的原因"></a>分段的原因</h4><p>在早期，地址总线有20根，可以寻址<strong>1M(2^20)</strong>的地址空间，但是寄存器是16位的，仅能寻址<strong>(64K)</strong>的地址空间。为了解决16位的寄存器对20位的地址总线的寻址问题。因此将<strong>1M</strong>的地址空间划分成<strong>2^16</strong>个区域，这样只要将寄存器的数据左移4位(等于乘上16)就能构成20位的地址，访问到所有区域的首地址(因为左移4位=乘16，所以这个首地址必然是16的倍数)，然后再加上另一个寄存器中16位的偏移量就可以访问到<strong>1M</strong>地址空间中任何地址(因此一个段最大只有64KB)。</p>
+<center><img src="/images/segment.png" alt="segment"></center>
+
+<h4 id="硬件中的分段"><a href="#硬件中的分段" class="headerlink" title="硬件中的分段"></a>硬件中的分段</h4><p>说完了分段产生的原因以及解决办法，现在再来看硬件中是如何处理分段的。</p>
+<center><img src="/images/segment_1.png" alt="segment_1"></center>
+
+<h5 id="段选择符"><a href="#段选择符" class="headerlink" title="段选择符"></a>段选择符</h5><p>前面说过，一个逻辑地址由段标识符和段内的偏移量组成。段标识符是一个16位的字段，称为段选择符。</p>
+<center><img src="/images/segment_2.png" alt="segment_2"></center>
+
+<p>其中索引号指定段描述符表中的段描述符，TL指定是从全局描述符表中找还是局部描述符表中找，RPL指定请求者的特权级别。</p>
+<h5 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h5><p>为了快速方便地找到段选择符，处理器提供了段寄存器，用来存放段选择符。有cs，ss，ds，es，fs和gs，其中:</p>
+<p>cs 代码段寄存器，指向包含程序指令的段。</p>
+<p>ss 栈段寄存器，指向包含当前程序栈的段。</p>
+<p>ds 数据段寄存器，指向包含静态数据或全局数据段。</p>
+<p>其余三个作一般用途，可以指向任意的数据段。</p>
+<p>cs寄存器还有一个重要的功能就是它的RPL字段，用来指明CPU当前的特权级(CPL)。0表示最高级，3表示最低级，Linux只用0和3表示内核态和用户态。</p>
+<h6 id="段描述符"><a href="#段描述符" class="headerlink" title="段描述符"></a>段描述符</h6><p>每个段都由一个8字节的段描述符表示，它描述了段的特征，段描述符又被放在全局描述符表(GDT)或者局部描述符表(LDT)中。</p>
+<p>通常CPU只定义一个GDT，如果进程需要额外的段，可以创建自己的LDT。GDT的地址和大小存放在gdtr控制寄存器中，当前正在被使用的LDT地址和大小则存放在ldtr控制器中。</p>
+<center><img src="/images/segment_3.png" alt="segment_3"></center>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Base(共32位)</td>
+<td>包含段的首字节的线性地址</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td>粒度标志:如果该位为0，则段大小以字节为单位，否则以4096字节(4KB)的倍数计</td>
+</tr>
+<tr>
+<td style="text-align:left">D/B</td>
+<td>D表示段是代码段，B则表示段是数据段</td>
+</tr>
+<tr>
+<td style="text-align:left">AVL</td>
+<td>可以由操作系统使用，但是Linux忽略此字段</td>
+</tr>
+<tr>
+<td style="text-align:left">Limit(共20位)</td>
+<td>存放段中最后一个内存单元的偏移量，从而决定段的长度。如果G=0，则一个段的大小是1B～1MB，G=1则为4KB～4GB。</td>
+</tr>
+<tr>
+<td style="text-align:left">P</td>
+<td>segment-presen标志:等于0表示段当前不内存中</td>
+</tr>
+<tr>
+<td style="text-align:left">DPL</td>
+<td>描述符特权级字段:用于限制对这个段的存取，它表示访问这个段要求<a href="#CPL">CPL</a>，例如DPL位0，这个段只有CPL位</td>
+</tr>
+<tr>
+<td style="text-align:left">S</td>
+<td>系统标志:0代表是系统段,1代表是普通的代码段或数据段</td>
+</tr>
+<tr>
+<td style="text-align:left">Type</td>
+<td>描述了段的类型特征和存取权限</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -432,7 +518,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/no-tags/" rel="tag"># no tags</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
           
         </div>
       
@@ -445,15 +533,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/24/c-compile/" rel="next" title="c语言编译过程">
+                <i class="fa fa-chevron-left"></i> c语言编译过程
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/01/base64/" rel="prev" title="base64编码">
-                base64编码 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -498,8 +586,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -596,6 +693,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存寻址"><span class="nav-number">2.</span> <span class="nav-text">内存寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存地址"><span class="nav-number">2.2.</span> <span class="nav-text">内存地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段"><span class="nav-number">2.3.</span> <span class="nav-text">分段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">分段的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分段"><span class="nav-number">2.3.2.</span> <span class="nav-text">硬件中的分段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#段选择符"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">段选择符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段寄存器"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">段寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#段描述符"><span class="nav-number">2.3.2.2.1.</span> <span class="nav-text">段描述符</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
