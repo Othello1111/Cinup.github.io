@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  后续为分页。    内存寻址简介本节介绍寻址技术。">
+  <meta name="description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
 <meta name="keywords" content="linux,操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Linux内核">
 <meta property="og:url" content="http://yoursite.com/2019/02/25/linux/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  后续为分页。    内存寻址简介本节介绍寻址技术。">
+<meta property="og:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/segment.png">
 <meta property="og:image" content="http://yoursite.com/images/segment_1.png">
@@ -122,10 +122,15 @@
 <meta property="og:image" content="http://yoursite.com/images/segment_3.png">
 <meta property="og:image" content="http://yoursite.com/images/segment_4.png">
 <meta property="og:image" content="http://yoursite.com/images/segment_5.png">
-<meta property="og:updated_time" content="2019-02-28T06:24:16.853Z">
+<meta property="og:image" content="http://yoursite.com/images/page.png">
+<meta property="og:image" content="http://yoursite.com/images/page_1.png">
+<meta property="og:image" content="http://yoursite.com/images/page_2.png">
+<meta property="og:image" content="http://yoursite.com/images/page_3.png">
+<meta property="og:image" content="http://yoursite.com/images/cache.png">
+<meta property="og:updated_time" content="2019-03-02T05:15:29.656Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Linux内核">
-<meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  后续为分页。    内存寻址简介本节介绍寻址技术。">
+<meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
 <meta name="twitter:image" content="http://yoursite.com/images/segment.png">
 
 
@@ -367,7 +372,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 14:24:16" itemprop="dateModified" datetime="2019-02-28T14:24:16+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-02 13:15:29" itemprop="dateModified" datetime="2019-03-02T13:15:29+08:00">2019-03-02</time>
               
             
           </span>
@@ -420,11 +425,14 @@
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇是&lt;深入理解Linux内核&gt;<strong>第三版</strong>的读书笔记，会在阅读完一章后进行更新。</p>
 <ul>
-<li>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。<ul>
+<li><p>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。</p>
+<ul>
 <li style="list-style: none"><input type="checkbox" checked> 2019.2.28完成分段。</li>
-<li style="list-style: none"><input type="checkbox"> 后续为分页。</li>
+<li style="list-style: none"><input type="checkbox" checked> 2019.3.2完成硬件中的分页。</li>
+<li style="list-style: none"><input type="checkbox"> 后续为Linux中的分页。</li>
 </ul>
 </li>
+<li></li>
 </ul>
 <h2 id="内存寻址"><a href="#内存寻址" class="headerlink" title="内存寻址"></a>内存寻址</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>本节介绍寻址技术。</p>
 <a id="more"></a>
@@ -434,7 +442,7 @@
 <p>每一个逻辑地址都由一个<strong>段(segment)</strong>和<strong>偏移量(offset)</strong>组成。</p>
 </li>
 <li><p>线性地址(虚拟地址)</p>
-<p>是一个32位无符号整数，可以用来表示高达<strong>4GB(2^32)</strong>的地址。</p>
+<p>是一个<strong>32位</strong>无符号整数，可以用来表示高达<strong>4GB(2^32)</strong>的地址。</p>
 </li>
 <li><p>物理地址</p>
 <p>用于内存芯片内存单元寻址。</p>
@@ -443,7 +451,7 @@
 <p>内存控制单元通过一种称为分段单元的硬件电路把一个逻辑地址转换成线性地址，接着，再通过一种称为分页单元的硬件电路把线性地址转化成一个物理地址。</p>
 <center><strong>逻辑地址—(分段单元)—&gt;线性地址—(分页单元)—&gt;物理地址</strong></center>
 
-<h3 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h3><h4 id="分段的原因"><a href="#分段的原因" class="headerlink" title="分段的原因"></a>分段的原因</h4><p>在早期，地址总线有20根，可以寻址<strong>1M(2^20)</strong>的地址空间，但是寄存器是16位的，仅能寻址<strong>(64K)</strong>的地址空间。为了解决16位的寄存器对20位的地址总线的寻址问题。因此将<strong>1M</strong>的地址空间划分成<strong>2^16</strong>个区域，这样只要将寄存器的数据左移4位(等于乘上16)就能构成20位的地址，访问到所有区域的首地址(因为左移4位=乘16，所以这个首地址必然是16的倍数)，然后再加上另一个寄存器中16位的偏移量就可以访问到<strong>1M</strong>地址空间中任何地址(因此一个段最大只有64KB)。</p>
+<h3 id="分段"><a href="#分段" class="headerlink" title="分段"></a>分段</h3><h4 id="分段的原因"><a href="#分段的原因" class="headerlink" title="分段的原因"></a>分段的原因</h4><p>在早期，地址总线有<strong>20</strong>根，可以寻址<strong>1M(2^20)</strong>的地址空间，但是寄存器是<strong>16</strong>位的，仅能寻址<strong>(64K)</strong>的地址空间。为了解决16位的寄存器对20位的地址总线的寻址问题。因此将<strong>1M</strong>的地址空间划分成<strong>2^16</strong>个区域，这样只要将寄存器的数据左移4位(等于乘上16)就能构成20位的地址，访问到所有区域的首地址(因为左移4位=乘16，所以这个首地址必然是16的倍数)，然后再加上另一个寄存器中16位的偏移量就可以访问到<strong>1M</strong>地址空间中任何地址(因此一个段最大只有64KB)。</p>
 <center><img src="/images/segment.png" alt="segment"></center>
 
 <center>图1</center>
@@ -507,7 +515,7 @@
 </tr>
 <tr>
 <td style="text-align:left">DPL</td>
-<td>描述符特权级字段:用于限制对这个段的存取，它表示访问这个段要求<a href="#CPL">CPL</a>，例如DPL位0，这个段只有CPL位为0才能访问。</td>
+<td>描述符特权级字段:用于限制对这个段的存取，它表示访问这个段要求CPL，例如DPL位0，这个段只有CPL位为0才能访问。</td>
 </tr>
 <tr>
 <td style="text-align:left">S</td>
@@ -613,6 +621,8 @@
 <p>每个GDT包含18个段描述符和14个空的，未使用的，或者保留的项。插入未使用的项是为了凑齐32字节，使得经常使用的描述符能够放入32字节的硬件高速缓存中。</p>
 <center><img src="/images/segment_5.png" alt="segment_5"></center>
 
+<center>图6</center>
+
 <p>每一个GDT包含的18个段描述符指向下列的段</p>
 <ul>
 <li><p>3个局部线程存储(TLS)段:这种机制允许多线程应用使用最多3个局部于线程的数据段。</p>
@@ -626,7 +636,144 @@
 <li>一个内核用来处理双重错误异常的TSS段(double fault TSS)。</li>
 </ul>
 <h5 id="Linux-LDT"><a href="#Linux-LDT" class="headerlink" title="Linux LDT"></a>Linux LDT</h5><p>大多数用户态下的程序都不使用局部描述符表，内核定义了一个缺省的LDT供多数进程共享。缺省的局部描述符表存放在<strong>default__ldt</strong>数组中。</p>
-<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><h4 id="硬件中的分页"><a href="#硬件中的分页" class="headerlink" title="硬件中的分页"></a>硬件中的分页</h4><h4 id="Linux中的分页"><a href="#Linux中的分页" class="headerlink" title="Linux中的分页"></a>Linux中的分页</h4>
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><h4 id="硬件中的分页"><a href="#硬件中的分页" class="headerlink" title="硬件中的分页"></a>硬件中的分页</h4><p>前面说过，分页单元把线性地址转换成物理地址，其中一个关键的任务就是把所请求的访问类型与线性地址的访问权限做比较。</p>
+<p>为了效率，线性地址被分成固定长度的组，称为<strong>页(page)</strong>。页内部连续的线性地址被映射到连续的物理地址空间上。</p>
+<p>分页单元把所有的RAM分成固定长度的<strong>页框(page frame)</strong>。每一个页框包含一个页。</p>
+<p>把线性地址映射成物理地址的数据结构叫做<strong>页表(page table)</strong>，页表存放在内存中，并在启动分页单元之前必须由内核对页表进行初始化。</p>
+<h5 id="常规分页"><a href="#常规分页" class="headerlink" title="常规分页"></a>常规分页</h5><p>32位的线性地址被分成3个域:</p>
+<p><strong>Directory(目录)</strong>:最高10位</p>
+<p><strong>Table(页表)</strong>:中间10位</p>
+<p><strong>Offset(偏移量)</strong>:最低12位</p>
+<p>因此线性地址的转换需要两步，每一步都需要基于一种转换表:</p>
+<ol>
+<li>根据Directory查找页目录表获得页表物理地址</li>
+<li>根据第一步中查找查找到的页表物理地址和Table找到页物理地址</li>
+<li>根据页地址和偏移量获得物理地址</li>
+</ol>
+<center><img src="/images/page.png" alt="page"></center>
+
+<center>图7</center>
+
+<p>正在使用的页目录的物理地址被存放在控制寄存器<strong>cr3</strong>中。</p>
+<p>页目录项和页表项有相同的结构</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Filed</td>
+<td>包含页框物理地址的前n(最高20)位。</td>
+</tr>
+<tr>
+<td>Global</td>
+<td>只用于页表项，用来防止页从TLB中被刷新出去。</td>
+</tr>
+<tr>
+<td>Page Size</td>
+<td>只用于页目录项，如果为1，则目录项指项2MB或4MB的页框。</td>
+</tr>
+<tr>
+<td>Dirty</td>
+<td>只用于页表项，判断页框是否被修改过。</td>
+</tr>
+<tr>
+<td>Accessed</td>
+<td>当分页单元对页框进行寻址时就设置这个标志。</td>
+</tr>
+<tr>
+<td>PCD</td>
+<td>控制硬件高速缓存处理页表或者页的方式。</td>
+</tr>
+<tr>
+<td>PWT</td>
+<td>同上。</td>
+</tr>
+<tr>
+<td>U/S</td>
+<td>访问页表或者页的特权级。</td>
+</tr>
+<tr>
+<td>R/W</td>
+<td>页表或者页的存取权限(R  R+W)。</td>
+</tr>
+<tr>
+<td>Present</td>
+<td>Present=1表示所指的页在主存中，反之则不在。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="拓展分页"><a href="#拓展分页" class="headerlink" title="拓展分页"></a>拓展分页</h5><p>拓展分页允许页框大小为<strong>4MB</strong>，因此需要22位Offset。</p>
+<p>32位的线性地址被分成3个域:</p>
+<p><strong>Directory(目录)</strong>:最高10位</p>
+<p><strong>Offset(偏移量)</strong>:最低22位</p>
+<center><img src="/images/page_1.png" alt="page_1"></center>
+
+<center>图8</center>
+
+<p>拓展分页下，没有页表项，页目录项就可以直接获得页框的物理地址。</p>
+<p>拓展分页和常规分页的页目录项大致相同，除了:</p>
+<p><strong>Filed</strong>字段只有前10位有效。</p>
+<p><strong>Page Size</strong>设置成为1。</p>
+<h5 id="硬件保护方案"><a href="#硬件保护方案" class="headerlink" title="硬件保护方案"></a>硬件保护方案</h5><p>分页单元和分段单元的保护方案不同，页和页表相关的特权级只有两个，<strong>User/Supervisos(U/S)</strong>标志控制。此外，页的存取权限只有读和写两种，而段有读，写和执行三种。</p>
+<h5 id="物理地址拓展分页机制"><a href="#物理地址拓展分页机制" class="headerlink" title="物理地址拓展分页机制"></a>物理地址拓展分页机制</h5><p>处理器所支持的RAM容量收到地址总线上的地址管脚数目限制，前面说过，20位的地址总线就只能寻址<strong>1MB</strong>的RAM，32位理论上可以寻址<strong>4GB</strong>的RAM。显然，通过提升地址总线可以提升寻址RAM容量。</p>
+<p>因此，早期Inter通过把管脚从32增加到36，使得寻址能力达到了<strong>64GB</strong>，但是线性地址还是32位的，因此需要引入一种新的分页机制，把32位的线性地址转换为36位物理地址，这就是<strong>物理地址拓展(PAE)</strong>机制。</p>
+<p>通过<strong>cr4</strong>控制寄存器的PAE标志激活PAE，页目录项中的<strong>Page Size</strong>设置为1，分页机制发生改变</p>
+<ul>
+<li>64GB的RAM被分为2^24个页框。</li>
+<li>页表项的Filed字段从20位拓展到24位，因此页表项大小从32位变为64位，一个4KB的页表只能包含512个表项。</li>
+<li>引入一个页目录指针表(PDPT)的页表新级别，它由4个64位的表项组成。</li>
+<li>cr3控制寄存器包含一个27位的页目录指针表(PDPT)基地址。</li>
+</ul>
+<p>当线性地址映射到4KB的页时(Page Size=0)，32位线性地址:</p>
+<ul>
+<li>cr3:指向一个PDPT</li>
+<li>位31-30:指向PDPT中4个项中的一个</li>
+<li>位29-21:指向页目录表512项中的一个</li>
+<li>位20-12:指向页表中512项中的一个</li>
+<li>位11-0:页中的偏移量</li>
+</ul>
+<center><img src="/images/page_2.png" alt="page_2"></center>
+
+<center>图9</center>
+
+<p>当线性地址映射到2MB的页时(Page Size=1)，32位线性地址:</p>
+<ul>
+<li>cr3:指向一个PDPT</li>
+<li>位31-30:指向PDPT中4个项中的一个</li>
+<li>位29-21:指向页目录表512项中的一个</li>
+<li>位20-0:页中的偏移量</li>
+</ul>
+<center><img src="/images/page_3.png" alt="page_3"></center>
+
+<center>图10</center>
+
+<p>需要注意的是，上面提到的拓展分页和物理地址拓展的差别:</p>
+<p>拓展分页是对于线性地址和物理地址位数相同的情况下，来划分不同页框大小使用的，目的是将大段连续的线性地址转换成相应的物理地址。</p>
+<p>物理地址拓展是拓展了物理地址，线性地址依旧是32位，而物理地址位36位，其目的是使32位地址空间能被转换成36位物理地址从而寻址到64GB的RAM。物理地址拓展并没有增加线性空间的大小，因此用户态的进程能使用的最大物理地址空间仍旧是4GB。</p>
+<h5 id="64位系统中的分页"><a href="#64位系统中的分页" class="headerlink" title="64位系统中的分页"></a>64位系统中的分页</h5><p>在32位系统中，普遍采用两级分页，然而在64位系统中，两级分页并不适用。</p>
+<p>因为这样页目录项和页表项太庞大，因此64位系统普遍采用三级甚至四级分页。</p>
+<p>x86_64平台使用48位来寻址，采用四级分页，线性地址分级为9+9+9+9+12。</p>
+<h5 id="硬件高速缓存"><a href="#硬件高速缓存" class="headerlink" title="硬件高速缓存"></a>硬件高速缓存</h5><p>我们知道CPU的时钟频率有几个GHz，而动态RAM(DRAM)芯片的存取时间是时钟周期的数百倍，这意味着从RAM中读写数据时，CPU需要等待很长的时间。</p>
+<p>未来弥补CPU和RAM之间的速度差距，引入了硬件高速缓存。</p>
+<p>硬件高速缓存给予著名的<strong>局部性原理</strong>，由于程序的循环结构及数组可以组织成线性数组，最近最常用的相邻地址在不久的将来又被用到的可能性极大。因此，引入小而快的内存来存放最近最常使用的代码和数据就可以不用多次访问RAM。</p>
+<center><img src="/images/cache.png" alt="cache"></center>
+
+<center>图11</center>
+
+<p>高速缓存单元被放置在分页单元和内存之间，它包含一个硬件高速缓存和一个高速缓存控制器。</p>
+<p>高速缓存控制器存放一个表项数组，每个表项对应高速缓存内存中的一个行。每个表项有一个标签(tag)和描述高速缓存行状态的几个标志(flags)。这些标签由一些位组成，高速缓存控制器可以通过这些位辨别由这个行所映射的内存单元。</p>
+<p>关于缓存的更多详情可以继续阅读计算机组成原理一书。</p>
+<p>处理器的cr0寄存器的CD标志位用来启用或者禁用高速缓存电路，NW标志用来指明高速缓存使用通写还是回写策略。</p>
+<p>在前面的页目录项中，有PCD和PWT两个字段。<strong>PCD(Page Cache Disable)</strong>用来指明访问这个页框中的数据时，高速缓存必须被启用还是禁用。<strong>PWD(Page Write-Through)</strong>指明页框数据被修改时，使用回写策略还是通写策略。</p>
+<p>Linux清除来所有PCD和PWT，因此对所有页框都启用高速缓存，而且使用回写策略。</p>
+<h5 id="TLB"><a href="#TLB" class="headerlink" title="TLB"></a>TLB</h5><p>除了通用的高速缓存外，80x86处理器还包含一个<strong>TLB(Translation Lookaside Buffer)</strong>的高速缓存用于加快线性地址的转换。</p>
+<p>当一个线性地址在第一次使用时，不在高速缓存内，因此访问RAM中的页表计算出物理地址，然后将这个物理地址加入到TLB表项中，再次访问这个线性地址可以直接TLB中获取物理地址。</p>
+<p>当cr3控制寄存器被修改时，TLB中所有的数据都会失效，这是因为cr3存储的是页目录基地址，修改cr3说明启用新的一组页表，而TLB指向旧页表中的数据。</p>
+<h4 id="Linux中的分页"><a href="#Linux中的分页" class="headerlink" title="Linux中的分页"></a>Linux中的分页</h4>
       
     </div>
 
@@ -799,6 +946,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -835,7 +984,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存寻址"><span class="nav-number">2.</span> <span class="nav-text">内存寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存地址"><span class="nav-number">2.2.</span> <span class="nav-text">内存地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段"><span class="nav-number">2.3.</span> <span class="nav-text">分段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">分段的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分段"><span class="nav-number">2.3.2.</span> <span class="nav-text">硬件中的分段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#段选择符"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">段选择符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段寄存器"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">段寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段描述符"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">段描述符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快速访问段描述符"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">快速访问段描述符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#逻辑地址转换"><span class="nav-number">2.3.2.5.</span> <span class="nav-text">逻辑地址转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux中的分段"><span class="nav-number">2.3.3.</span> <span class="nav-text">Linux中的分段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux-GDT"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">Linux GDT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux-LDT"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">Linux LDT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">2.4.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分页"><span class="nav-number">2.4.1.</span> <span class="nav-text">硬件中的分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux中的分页"><span class="nav-number">2.4.2.</span> <span class="nav-text">Linux中的分页</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存寻址"><span class="nav-number">2.</span> <span class="nav-text">内存寻址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存地址"><span class="nav-number">2.2.</span> <span class="nav-text">内存地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分段"><span class="nav-number">2.3.</span> <span class="nav-text">分段</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分段的原因"><span class="nav-number">2.3.1.</span> <span class="nav-text">分段的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分段"><span class="nav-number">2.3.2.</span> <span class="nav-text">硬件中的分段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#段选择符"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">段选择符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段寄存器"><span class="nav-number">2.3.2.2.</span> <span class="nav-text">段寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段描述符"><span class="nav-number">2.3.2.3.</span> <span class="nav-text">段描述符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#快速访问段描述符"><span class="nav-number">2.3.2.4.</span> <span class="nav-text">快速访问段描述符</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#逻辑地址转换"><span class="nav-number">2.3.2.5.</span> <span class="nav-text">逻辑地址转换</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux中的分段"><span class="nav-number">2.3.3.</span> <span class="nav-text">Linux中的分段</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux-GDT"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">Linux GDT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Linux-LDT"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">Linux LDT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页"><span class="nav-number">2.4.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#硬件中的分页"><span class="nav-number">2.4.1.</span> <span class="nav-text">硬件中的分页</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常规分页"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">常规分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#拓展分页"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">拓展分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#硬件保护方案"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">硬件保护方案</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#物理地址拓展分页机制"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">物理地址拓展分页机制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#64位系统中的分页"><span class="nav-number">2.4.1.5.</span> <span class="nav-text">64位系统中的分页</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#硬件高速缓存"><span class="nav-number">2.4.1.6.</span> <span class="nav-text">硬件高速缓存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TLB"><span class="nav-number">2.4.1.7.</span> <span class="nav-text">TLB</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux中的分页"><span class="nav-number">2.4.2.</span> <span class="nav-text">Linux中的分页</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

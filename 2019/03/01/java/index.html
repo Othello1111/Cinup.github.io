@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。">
+  <meta name="description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。 区别模块主要用来理清一些相近的概念； 方式模块主要用来记录一些方法； 理解模块主要用来探究Java语言的设计思想。  2019.3.1第一次更新">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java知识点">
 <meta property="og:url" content="http://yoursite.com/2019/03/01/java/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。">
+<meta property="og:description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。 区别模块主要用来理清一些相近的概念； 方式模块主要用来记录一些方法； 理解模块主要用来探究Java语言的设计思想。  2019.3.1第一次更新">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T06:06:14.029Z">
+<meta property="og:updated_time" content="2019-03-01T06:16:56.040Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java知识点">
-<meta name="twitter:description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。">
+<meta name="twitter:description" content="简介整理一些java中的知识，分为区别，方式，和理解三个板块。 区别模块主要用来理清一些相近的概念； 方式模块主要用来记录一些方法； 理解模块主要用来探究Java语言的设计思想。  2019.3.1第一次更新">
 
 
 
@@ -343,7 +343,7 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:55:30 / 修改时间：14:06:14" itemprop="dateCreated datePublished" datetime="2019-03-01T13:55:30+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 13:55:30 / 修改时间：14:16:56" itemprop="dateCreated datePublished" datetime="2019-03-01T13:55:30+08:00">2019-03-01</time>
             
 
             
@@ -400,10 +400,14 @@
 
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理一些java中的知识，分为区别，方式，和理解三个板块。</p>
-<a id="more"></a>
-<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li><strong>java中 == 和equals 和hashCode的区别</strong></li>
+<p>区别模块主要用来理清一些相近的概念；</p>
+<p>方式模块主要用来记录一些方法；</p>
+<p>理解模块主要用来探究Java语言的设计思想。</p>
+<ul>
+<li>2019.3.1第一次更新</li>
 </ul>
+<a id="more"></a>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><strong>java中 == 和equals 和hashCode的区别</strong></p>
 <p>基本数据类型:<strong>byte,short,char,int,long,float,double,boolean</strong>比较时,只能使用<strong>==</strong>,比较的是它们的值。引用数据类型:使用<strong>==</strong>比较时,比较的它们的内存地址,即它们是否指向同一个对象。</p>
 <p><strong>equals</strong>是<strong>Object</strong>类的一个方法,默认实现是内存地址的比较,即引用数据类型的<strong>==</strong>比较,子类可根据具体情况需要重</p>
 <p>写该方法。</p>
@@ -417,22 +421,50 @@
 <li>先比较<strong>hashCode</strong>,<strong>hashCode</strong>不相等,则对象一定不相等。</li>
 <li><strong>hashCode</strong>相等再判断<strong>equals</strong>。</li>
 </ol>
-<ul>
-<li><p><strong>int 和 Integer的区别</strong><br><strong>int</strong>是java的一种基本数据类型, <strong>Integer</strong>是<strong>int</strong>的包装类。在实际使用过程中,java会自动进行装箱(将int包装成Integer对象)和拆箱(将Integer对象转换成int)。<br>同理还有</p>
-<p>| 基本类型 | 包装类    |<br>| ——– | ——— |<br>| boolean  | Boolean   |<br>| byte     | Byte      |<br>| short    | Short     |<br>| long     | Long      |<br>| char     | Character |<br>| double   | Double    |</p>
-</li>
-<li><p><strong>final finally和finalize的区别</strong></p>
+<p><strong>int 和 Integer的区别</strong><br><strong>int</strong>是java的一种基本数据类型, <strong>Integer</strong>是<strong>int</strong>的包装类。在实际使用过程中,java会自动进行装箱(将int包装成Integer对象)和拆箱(将Integer对象转换成int)。<br>同理还有</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>包装类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+</tbody>
+</table>
+<p><strong>final finally和finalize的区别</strong></p>
 <ol>
 <li>final是修饰符，可以修饰变量，方法和类，被修饰的变量赋值后就不能被修改，被修饰的方法不能被重写，被修饰符类不能被继承。</li>
 <li>finally是异常处理的一部分，配合try/catch使用，附带一个语句块，在try/catch中无论是否发生异常都被执行，通常用来释放资源，例如关闭打开的文件。</li>
 <li>finalize是Object的方法</li>
 </ol>
-</li>
-</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">finalize</span><span class="params">()</span> <span class="keyword">throws</span> Throwable </span>&#123; &#125;</span><br></pre></td></tr></table></figure>
 <pre><code>这个方法在gc时被调用，但是调用后不意味着对象立即被回收，在java9后被弃用。
-</code></pre><ul>
-<li><p><strong>String StingBuffer和StringBuilder的区别</strong></p>
+</code></pre><p><strong>String StingBuffer和StringBuilder的区别</strong></p>
 <ol>
 <li>String</li>
 </ol>
@@ -454,26 +486,18 @@
 <p>一样是可变的。但是StringBuffer方法使用了synchronized关键字</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(StringBuffer another)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">super</span>.compareTo(another);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>因此和StringBuilder相比，StringBuffer是线程安全的。</p>
-</li>
-</ul>
 <p>三者的执行效率</p>
 <center>StringBuilder &gt; StringBuffer &gt; String</center>
 
-<ul>
-<li><strong>泛型中extends和super的区别</strong></li>
-</ul>
+<p><strong>泛型中extends和super的区别</strong></p>
 <p>在泛型中</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;? extends T&gt;</span><br></pre></td></tr></table></figure>
 <p>设定通配符的上限，即通配T以及T的子类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;? <span class="keyword">super</span> T&gt;</span><br></pre></td></tr></table></figure>
 <p>设定通配符的下限，即通配T以及T的父类。</p>
-<h2 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h2><ul>
-<li><strong>如何格式化日期</strong></li>
-</ul>
+<h2 id="方式"><a href="#方式" class="headerlink" title="方式"></a>方式</h2><p><strong>如何格式化日期</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取当前时间</span></span><br><span class="line">Date d = <span class="keyword">new</span> Date();</span><br><span class="line"><span class="comment">//创建日期格式化类</span></span><br><span class="line">SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"dd"</span>);</span><br><span class="line"><span class="comment">//格式化</span></span><br><span class="line">String s = sdf.format(d);</span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong> String转Integer的方法和原理</strong></li>
-</ul>
+<p><strong>String转Integer的方法和原理</strong></p>
 <ol>
 <li>Integer类的valueOf方法</li>
 </ol>
@@ -487,9 +511,7 @@
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parseInt</span><span class="params">(String s)</span> <span class="keyword">throws</span> NumberFormatException </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> parseInt(s,<span class="number">10</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>本质都是遍历字符串。</p>
-<ul>
-<li><strong>序列化的方式</strong></li>
-</ul>
+<p><strong>序列化的方式</strong></p>
 <p>序列化:就是把java对象转化为字节序列的过程，反之称为反序列化。</p>
 <p>对象的序列化主要有两种用途</p>
 <ol>
@@ -509,22 +531,15 @@
 <li>实现<strong>Externalizable</strong>接口</li>
 </ol>
 <p><strong>Serializable</strong>接口的子类，有时我们不希望序列化那么多，可以使用这个接口，这个接口的<strong>writeExternal()</strong>和<strong>readExternal()</strong>方法可以指定序列化哪些属性。</p>
-<p>##理解</p>
-<ul>
-<li><strong>抽象类的意义</strong></li>
-</ul>
+<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p><strong>抽象类的意义</strong></p>
 <ol>
 <li>为子类提供一个公共的类型;</li>
 <li>封装子类中重复内容(成员变量和方法);</li>
 <li>定义有抽象方法,子类虽然有不同的实现，但该方法的定义是一致的。</li>
 </ol>
-<ul>
-<li><strong>多态的理解</strong></li>
-</ul>
+<p><strong>多态的理解</strong></p>
 <p>多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编译时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</p>
-<ul>
-<li><strong>能否创建一个包含可变变量的不可变对象</strong></li>
-</ul>
+<p><strong>能否创建一个包含可变变量的不可变对象</strong></p>
 <p>不可变类:所谓的不可变类是指这个类的实例一旦创建完成后，就不能改变其成员变量值。</p>
 <p>所以一个不可变类需要满足以下条件</p>
 <ol>
@@ -534,13 +549,9 @@
 <li>提供带参数的构造方法，方法内部要用深拷贝对成员变量赋值</li>
 </ol>
 <p>因此如果要构造一个包含可变变量的不可变对象，在理论上是可以的，只要满足上述条件保证成员变量不被共享就能使得成员变量无法被修改。</p>
-<ul>
-<li><strong>静态属性和方法是否可以被继承和重写，原因是什么</strong></li>
-</ul>
+<p><strong>静态属性和方法是否可以被继承和重写，原因是什么</strong></p>
 <p>可以被继承，但是不能被重写，而是被隐藏。静态属性和方法是属于类的，是所有对象公用的，子类可以继承父类的静态方法，但是不同通过父类引用指向子类对象实现静态方法的多态，因此说可以被继承而不能被重写。</p>
-<ul>
-<li><strong>成员内部类，静态内部类，局部内部类和匿名内部类</strong></li>
-</ul>
+<p><strong>成员内部类，静态内部类，局部内部类和匿名内部类</strong></p>
 <p>内部类:可以将一个类定义在另一个类或者方法里面，这样的类称之为内部类。</p>
 <ol>
 <li>成员内部类</li>
@@ -748,6 +759,8 @@
                     
                       
                     
+                      
+                    
                     <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -784,7 +797,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式"><span class="nav-number">3.</span> <span class="nav-text">方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">2.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式"><span class="nav-number">3.</span> <span class="nav-text">方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解"><span class="nav-number">4.</span> <span class="nav-text">理解</span></a></li></ol></div>
             
 
           </div>
