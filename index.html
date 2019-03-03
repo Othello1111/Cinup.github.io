@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/java/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/java-jvmgc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="cp">
@@ -319,8 +319,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/java/" itemprop="url">
-                  java知识点
+                <a class="post-title-link" href="/2019/03/02/java-jvmgc/" itemprop="url">
+                  Java垃圾回收算法
                 </a>
               
             
@@ -346,12 +346,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:55:30 / 修改时间：14:16:56" itemprop="dateCreated datePublished" datetime="2019-03-01T13:55:30+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-02 19:31:17" itemprop="dateCreated datePublished" datetime="2019-03-02T19:31:17+08:00">2019-03-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 19:17:25" itemprop="dateModified" datetime="2019-03-03T19:17:25+08:00">2019-03-03</time>
               
             
           </span>
@@ -368,7 +380,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -403,16 +415,714 @@
 
       
         
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理一些java中的知识，分为区别，方式，和理解三个板块。</p>
-<p>区别模块主要用来理清一些相近的概念；</p>
-<p>方式模块主要用来记录一些方法；</p>
-<p>理解模块主要用来探究Java语言的设计思想。</p>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理JVM的GC算法，图片均来源于网络。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/java-jvmgc/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/java-objectmoudel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cp">
+      <meta itemprop="description" content="一个不知名的博客。">
+      <meta itemprop="image" content="/images/image.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/02/java-objectmoudel/" itemprop="url">
+                  Java对象模型
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-02 19:19:12" itemprop="dateCreated datePublished" datetime="2019-03-02T19:19:12+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 19:17:34" itemprop="dateModified" datetime="2019-03-03T19:17:34+08:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理Java对象模型，图片均来源于网络。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/java-objectmoudel/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/java-class/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cp">
+      <meta itemprop="description" content="一个不知名的博客。">
+      <meta itemprop="image" content="/images/image.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/02/java-class/" itemprop="url">
+                  Java类加载机制与反射
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-02 19:03:33" itemprop="dateCreated datePublished" datetime="2019-03-02T19:03:33+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 19:17:14" itemprop="dateModified" datetime="2019-03-03T19:17:14+08:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理Java类加载机制和反射的使用。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/java-class/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/java-jvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cp">
+      <meta itemprop="description" content="一个不知名的博客。">
+      <meta itemprop="image" content="/images/image.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/02/java-jvm/" itemprop="url">
+                  Java虚拟机
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-02 18:35:42" itemprop="dateCreated datePublished" datetime="2019-03-02T18:35:42+08:00">2019-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 19:17:19" itemprop="dateModified" datetime="2019-03-03T19:17:19+08:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理一些Java虚拟机的的知识，图片均来源于网络。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/02/java-jvm/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/java-knowledge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cp">
+      <meta itemprop="description" content="一个不知名的博客。">
+      <meta itemprop="image" content="/images/image.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/01/java-knowledge/" itemprop="url">
+                  Java知识点
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-01 13:55:30" itemprop="dateCreated datePublished" datetime="2019-03-01T13:55:30+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 21:50:35" itemprop="dateModified" datetime="2019-03-03T21:50:35+08:00">2019-03-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理一些Java中的知识，分为语法，区别，方式，和理解三个板块。</p>
+<p>语法模块主要用来强化对语法的记忆；</p>
+<p>区别模块主要用来分辨一些相近的概念；</p>
+<p>方式模块主要用来记录一些使用方法；</p>
+<p>理解模块主要用来探究语言的原理。</p>
 <ul>
 <li>2019.3.1第一次更新</li>
+<li>2019.3.3第二次更新，添加语法模块。</li>
 </ul>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/java/#more" rel="contents">
+            <a class="btn" href="/2019/03/01/java-knowledge/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -531,7 +1241,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-02 13:15:29" itemprop="dateModified" datetime="2019-03-02T13:15:29+08:00">2019-03-02</time>
+                <time title="修改时间：2019-03-02 19:18:29" itemprop="dateModified" datetime="2019-03-02T19:18:29+08:00">2019-03-02</time>
               
             
           </span>
@@ -585,16 +1295,13 @@
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇是&lt;深入理解Linux内核&gt;<strong>第三版</strong>的读书笔记，会在阅读完一章后进行更新。</p>
 <ul>
-<li><p>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。</p>
-<ul>
+<li>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。<ul>
 <li style="list-style: none"><input type="checkbox" checked> 2019.2.28完成分段。</li>
 <li style="list-style: none"><input type="checkbox" checked> 2019.3.2完成硬件中的分页。</li>
 <li style="list-style: none"><input type="checkbox"> 后续为Linux中的分页。</li>
 </ul>
 </li>
-<li></li>
 </ul>
-<h2 id="内存寻址"><a href="#内存寻址" class="headerlink" title="内存寻址"></a>内存寻址</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>本节介绍寻址技术。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/02/25/linux/#more" rel="contents">
@@ -699,12 +1406,24 @@
                 
               
 
-              <time title="创建时间：2019-02-24 12:49:52 / 修改时间：13:16:24" itemprop="dateCreated datePublished" datetime="2019-02-24T12:49:52+08:00">2019-02-24</time>
+              <time title="创建时间：2019-02-24 12:49:52" itemprop="dateCreated datePublished" datetime="2019-02-24T12:49:52+08:00">2019-02-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-02 19:43:02" itemprop="dateModified" datetime="2019-03-02T19:43:02+08:00">2019-03-02</time>
               
             
           </span>
@@ -756,8 +1475,7 @@
 
       
         
-          <h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>gcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。</p>
-<h2 id="gcc工作过程"><a href="#gcc工作过程" class="headerlink" title="gcc工作过程"></a>gcc工作过程</h2>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理c语言的编译过程。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/02/24/c-compile/#more" rel="contents">
@@ -879,7 +1597,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-24 13:15:30" itemprop="dateModified" datetime="2019-02-24T13:15:30+08:00">2019-02-24</time>
+                <time title="修改时间：2019-03-02 19:45:28" itemprop="dateModified" datetime="2019-03-02T19:45:28+08:00">2019-03-02</time>
               
             
           </span>
@@ -931,8 +1649,7 @@
 
       
         
-          <h2 id="进程的概念"><a href="#进程的概念" class="headerlink" title="进程的概念"></a>进程的概念</h2><p>进程是程序执行的过程，包括了动态创建、调度和消亡的整个过程。进程是程序执行和资源管理的最小单位。<br><strong>父进程</strong>:创建其他进程的进程。<br><strong>子进程</strong>:被其他进程创建的进程。<br><strong>僵尸进程</strong>:已终止运行，但尚末被清除的进程，又称为过渡进程。<br><strong>守护进程</strong>:运行在后台的一种特殊进程。它独立于控制终端并且周期性地执行某种任务或等待处理某些发生的事件。</p>
-<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理Linux下c语言进程相关的函数。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/05/linux-c-process/#more" rel="contents">
@@ -1011,7 +1728,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/10/09/java-thread/" itemprop="url">
-                  java多线程
+                  Java多线程
                 </a>
               
             
@@ -1054,7 +1771,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-24 13:15:21" itemprop="dateModified" datetime="2019-02-24T13:15:21+08:00">2019-02-24</time>
+                <time title="修改时间：2019-03-03 19:17:41" itemprop="dateModified" datetime="2019-03-03T19:17:41+08:00">2019-03-03</time>
               
             
           </span>
@@ -1071,7 +1788,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -1106,8 +1823,8 @@
 
       
         
-          <h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>1.1 进程和线程的概念<br>1.2 使用多线程<br>1.2.1 继承Thread类，重写run方法<br>1.2.2 实现Runnable接口，重写run方法<br>1.3 线程安全</p>
-<h2 id="并发访问"><a href="#并发访问" class="headerlink" title="并发访问"></a>并发访问</h2>
+          <p>##简介</p>
+<p>整理Java多线程的知识点。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/09/java-thread/#more" rel="contents">
@@ -1229,7 +1946,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-24 13:15:14" itemprop="dateModified" datetime="2019-02-24T13:15:14+08:00">2019-02-24</time>
+                <time title="修改时间：2019-03-02 19:17:47" itemprop="dateModified" datetime="2019-03-02T19:17:47+08:00">2019-03-02</time>
               
             
           </span>
@@ -1282,7 +1999,6 @@
       
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Base64是网络上最常见的用于传输8Bit字节码的编码方式之一。<br>众所周知，ASCII编码使用指定的7位或8位二进制数组合来表示128或256种可能的字符，其中存在着很多不可显示的字符，例如LF（换行）、CR（回车）等，而Base64编码就是将ASCII字符编码成64个可打印的字符。</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/10/01/base64/#more" rel="contents">
@@ -1326,179 +2042,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/24/blog-desc/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cp">
-      <meta itemprop="description" content="一个不知名的博客。">
-      <meta itemprop="image" content="/images/image.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="我的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/24/blog-desc/" itemprop="url">
-                  博客前言
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-24 14:58:59" itemprop="dateCreated datePublished" datetime="2018-09-24T14:58:59+08:00">2018-09-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-25 09:55:09" itemprop="dateModified" datetime="2019-02-25T09:55:09+08:00">2019-02-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>无意中发现 <strong>Github Pages</strong> 为用户提供了免费的项目网站，聪明的程序员发现可以利用这个规则来搭建自己的博客。<br>于是我也紧随潮流，按照网上的教程使用 <strong>Hexo</strong> + <strong>Github</strong>成功创建了属于自己的<strong>Github Pages</strong>。<br>写博客的初衷是为了记录自己的学习经历、生活经历、对生命的反思、对人生的探讨，诸如此类等等。<br>此博客权当做网络日记本，若有幸能被有缘人看见，还望不吝赐教，相互探讨。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1541,7 +2091,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1553,6 +2103,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     

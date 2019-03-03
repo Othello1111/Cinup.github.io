@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
+  <meta name="description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。">
 <meta name="keywords" content="linux,操作系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解Linux内核">
 <meta property="og:url" content="http://yoursite.com/2019/02/25/linux/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
+<meta property="og:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/segment.png">
 <meta property="og:image" content="http://yoursite.com/images/segment_1.png">
@@ -127,10 +127,10 @@
 <meta property="og:image" content="http://yoursite.com/images/page_2.png">
 <meta property="og:image" content="http://yoursite.com/images/page_3.png">
 <meta property="og:image" content="http://yoursite.com/images/cache.png">
-<meta property="og:updated_time" content="2019-03-02T05:15:29.656Z">
+<meta property="og:updated_time" content="2019-03-02T11:18:29.708Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Linux内核">
-<meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。     内存寻址简介本节介绍寻址技术。">
+<meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一章后进行更新。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。  2019.2.28完成分段。  2019.3.2完成硬件中的分页。  后续为Linux中的分页。">
 <meta name="twitter:image" content="http://yoursite.com/images/segment.png">
 
 
@@ -372,7 +372,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-02 13:15:29" itemprop="dateModified" datetime="2019-03-02T13:15:29+08:00">2019-03-02</time>
+                <time title="修改时间：2019-03-02 19:18:29" itemprop="dateModified" datetime="2019-03-02T19:18:29+08:00">2019-03-02</time>
               
             
           </span>
@@ -425,17 +425,15 @@
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>这篇是&lt;深入理解Linux内核&gt;<strong>第三版</strong>的读书笔记，会在阅读完一章后进行更新。</p>
 <ul>
-<li><p>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。</p>
-<ul>
+<li>2019.2.25更新第一章内存寻址，对应&lt;深入理解Linux&gt;第二章内容。<ul>
 <li style="list-style: none"><input type="checkbox" checked> 2019.2.28完成分段。</li>
 <li style="list-style: none"><input type="checkbox" checked> 2019.3.2完成硬件中的分页。</li>
 <li style="list-style: none"><input type="checkbox"> 后续为Linux中的分页。</li>
 </ul>
 </li>
-<li></li>
 </ul>
-<h2 id="内存寻址"><a href="#内存寻址" class="headerlink" title="内存寻址"></a>内存寻址</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>本节介绍寻址技术。</p>
 <a id="more"></a>
+<h2 id="内存寻址"><a href="#内存寻址" class="headerlink" title="内存寻址"></a>内存寻址</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>本节介绍寻址技术。</p>
 <h3 id="内存地址"><a href="#内存地址" class="headerlink" title="内存地址"></a>内存地址</h3><p>在编程中偶尔会使用内存地址作为访问内存单元内容的一种方式，当使用80x86处理器时，需要区分三种不同的地址:</p>
 <ul>
 <li><p>逻辑地址</p>
@@ -818,8 +816,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/01/java/" rel="prev" title="java知识点">
-                java知识点 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/01/java-knowledge/" rel="prev" title="Java知识点">
+                Java知识点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -892,7 +890,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -904,6 +902,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
