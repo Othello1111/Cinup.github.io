@@ -108,18 +108,20 @@
 
 
 
-  <meta name="description" content="##简介 整理Java多线程的知识点。">
-<meta name="keywords" content="线程,Java">
+  <meta name="description" content="简介Java多线程的知识点。参考资料&amp;lt;Java多线程编程核心技术&amp;gt;。  更新于2019.3.4">
+<meta name="keywords" content="Java,线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java多线程">
 <meta property="og:url" content="http://yoursite.com/2018/10/09/java-thread/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="##简介 整理Java多线程的知识点。">
+<meta property="og:description" content="简介Java多线程的知识点。参考资料&amp;lt;Java多线程编程核心技术&amp;gt;。  更新于2019.3.4">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-03T11:17:41.368Z">
+<meta property="og:image" content="http://yoursite.com/images/thread.png">
+<meta property="og:updated_time" content="2019-03-04T07:48:20.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java多线程">
-<meta name="twitter:description" content="##简介 整理Java多线程的知识点。">
+<meta name="twitter:description" content="简介Java多线程的知识点。参考资料&amp;lt;Java多线程编程核心技术&amp;gt;。  更新于2019.3.4">
+<meta name="twitter:image" content="http://yoursite.com/images/thread.png">
 
 
 
@@ -360,7 +362,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-03 19:17:41" itemprop="dateModified" datetime="2019-03-03T19:17:41+08:00">2019-03-03</time>
+                <time title="修改时间：2019-03-04 15:48:20" itemprop="dateModified" datetime="2019-03-04T15:48:20+08:00">2019-03-04</time>
               
             
           </span>
@@ -411,17 +413,60 @@
       
 
       
-        <p>##简介</p>
-<p>整理Java多线程的知识点。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Java多线程的知识点。参考资料&lt;Java多线程编程核心技术&gt;。</p>
+<ul>
+<li>更新于2019.3.4</li>
+</ul>
 <a id="more"></a>
-<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p>1.1 进程和线程的概念<br>1.2 使用多线程<br>1.2.1 继承Thread类，重写run方法<br>1.2.2 实现Runnable接口，重写run方法<br>1.3 线程安全</p>
-<h2 id="并发访问"><a href="#并发访问" class="headerlink" title="并发访问"></a>并发访问</h2><p>2.1 synchronize同步方法<br>2.2 synchronize同步语句块</p>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><h3 id="进程和线程的概念"><a href="#进程和线程的概念" class="headerlink" title="进程和线程的概念"></a>进程和线程的概念</h3><p>进程:进程是操作系统分配资源的基本单位，也就是操作系统是按进程分配资源的。</p>
+<p>线程:线程操作系统调度的基本单位，一个进程至少有一个线程，进程里的线程共享进程的资源。</p>
 <blockquote>
-<p>1.synchronize非静态方法锁住的是对象实例，但是其他线程依旧可以异步访问非synchronize方法。<br>2.synchronize 静态方法和synchronize(Object.class)一样，是类锁，锁Class文件，对所有类的实例都有效。<br>3.出现异常，锁自动释放。<br>4.同步不具有继承性。</p>
+<p>举一个比喻，进程就好比一间办公室，线程就好比办公室里的员工，办公室拥有分配的资源(空间)，而员工可以共享这些资源，同时利用这些资源来完成日常的工作。</p>
 </blockquote>
+<p>因此操作系统给进程分配了它所需要的资源，由进程中的线程共同利用这些资源来完成任务。</p>
+<p>谈一点自己对多线程的理解，即为什么要出现多线程。</p>
+<p>首先按照一进程一线程的概念，是完全可以完成任务的，但是假如两个进程需要通信时，需要额外开辟资源给它们用来通信，而且还需要频繁的切换进程，及其影响效率。</p>
+<blockquote>
+<p>以上述的例子举例，假如办公室将每个员工都隔开，每个员工仅仅拥有自己的一点小办公室，那么当员工间需要交流时，就需要起身再找一个空地来进行交流，这显然是很浪费时间的。因此直接将员工放在一个大的办公室内，有问题就可以直接在这个办公室内交流，节省了寻找空房间的时间。</p>
+</blockquote>
+<p>所以，多线程的实质，就是将多个有关联任务放在一个进程里，减少进程切换带来的时间损耗。</p>
+<h4 id="使用多线程"><a href="#使用多线程" class="headerlink" title="使用多线程"></a>使用多线程</h4><p>继承Thread类，重写run方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">MyThread</span><span class="params">()</span> extends Thread</span>&#123;</span><br><span class="line">    <span class="comment">//重写run方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//do</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mythread mt = <span class="keyword">new</span> Mythread();</span><br><span class="line">mt.start();</span><br></pre></td></tr></table></figure>
+<p>实现Runnable接口，重写run方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> class <span class="title">MyThread</span><span class="params">()</span> implements Runnable</span>&#123;</span><br><span class="line">    <span class="comment">//重写run方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//do</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mythread mt = <span class="keyword">new</span> Mythread();</span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(mt);</span><br><span class="line">t.start();</span><br></pre></td></tr></table></figure>
+<h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><p>由于线程共享某些资源和线程执行的随机性，多线程的执行结果是不确定的，这样的多线程是不安全的。</p>
+<blockquote>
+<p>就像办公室的电脑，谁都可以用，一个员工可能在工作，中途出去了，另一个员工没有保存工作结果直接开始工作，中途也出去，回来的员工就直接在上面继续自己的工作，最终的结果是，两个员工的工作都不是自己想要的结果，因为中途都被另一个人修改了。</p>
+</blockquote>
+<p>因此需要一种机制，证明自己正在使用这个资源，以确保别人知道不会来抢占。</p>
+<h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><center><img src="/images/thread.png" alt="thread"></center>
+
+<h2 id="并发访问"><a href="#并发访问" class="headerlink" title="并发访问"></a>并发访问</h2><p>Java在语言层面上提供了synchronized关键字，synchronized关键字就是告诉其他线程的机制，这个资源已经占用了，让其等待。</p>
+<h4 id="synchronized同步方法"><a href="#synchronized同步方法" class="headerlink" title="synchronized同步方法"></a>synchronized同步方法</h4><p>线程访问synchronized修饰的方法时，会尝试去拿方法的使用权，如果发现有线程正在使用这个方法，就不会进入方法体，而是等待其他线程执行完。</p>
+<p>这个使用权在Java里就是加锁，即第一个进入synchronized同步语句的线程获得锁。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//do</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="synchronized同步语句块"><a href="#synchronized同步语句块" class="headerlink" title="synchronized同步语句块"></a>synchronized同步语句块</h4><p>有时候一个方法内还有很多其他操作，而对共享变量操作的代码只是一小部分，可以尝试synchronized修饰关键代码块，这样其他线程访问方法时，可以将方法体中的其他操作先完成，而对共享变量的访问会被拒绝，有效地提高了线程的效率。这里使用<strong>synchronized(this)</strong>监视的是当前对象，即其他线程进入synchronized修饰的语句时都会被拒绝。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//do some other work</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">//real add</span></span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="synchronized其他对象"><a href="#synchronized其他对象" class="headerlink" title="synchronized其他对象"></a>synchronized其他对象</h4><p>当一个线程进入synchronized语句块后，就持有这个对象的锁，那么其他线程就只能访问这个对象的非synchronized修饰的方法，无法进入任何synchronized修饰的方法。</p>
+<p>因此，当对象有大量的synchronized的方法，但是它们操作的不是同一个共享变量时，使用synchronized方法会导致其他无关的synchronized方法也无法获得锁，因此可以使用synchronized对象来区分不同的锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Integer i1 = <span class="keyword">new</span> Integer();</span><br><span class="line">Integer i2 = <span class="keyword">new</span> Integer();</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(i1)&#123;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addOther</span><span class="params">()</span></span>&#123;</span><br><span class="line">     <span class="keyword">synchronized</span>(i2)&#123;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="synchronized-Class"><a href="#synchronized-Class" class="headerlink" title="synchronized Class"></a>synchronized Class</h4><p>synchronized不仅可以对对象上锁，还可以对类的对象Class上锁，对Class上锁会影响对象所有实例，即使线程访问对象不同的实例的synchronized方法，也会被拒绝。</p>
+<p>但是Class锁和对象锁是两种锁，并不影响，即线程获得Class锁，其他线程仍然可以获得对象锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span>(<span class="keyword">this</span>.class)&#123;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>1.synchronized非静态方法锁住的是对象实例，但是其他线程依旧可以异步访问非synchronized方法。</p>
+<p>2.synchronized静态方法和synchronized(Object.class)一样，是类锁，锁Class文件，对所有类的实例都有效。</p>
+<p>3.出现异常，锁自动释放。</p>
+<p>4.同步不具有继承性。</p>
+<p>5.synchronized锁是可以重入的，即获得对象锁后还能继续获得对象锁。表现为synchronized语句内调用synchronized语句，子类同步方法可以通过可重入锁调用父类同步方法。</p>
+</blockquote>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>对象锁</p>
+<p>synchronized可以看作申请锁的过程，当线程进入synchronized语句块时，首先尝试去获得对应的锁，如果synchronized语句块没有被上锁，那么就获得锁，并对其加上锁，发现已经被锁住，那么就等待释放锁。</p>
+<p>Class锁</p>
+<p>因为对象在堆内，可以有多个不同的实例，因此类的不同对象实例争取自己实例的锁，而类的Class描述类的类，在内存中只有一份，因此类的不同对象实例争取同一个锁。</p>
 <h2 id="线程通信"><a href="#线程通信" class="headerlink" title="线程通信"></a>线程通信</h2><p>wait使线程进入暂停状态<br>notify随机唤醒线程<br>notifyAll<br>join主线程等待子线程执行<br>ThreadLocal线程共享私有变量</p>
 <blockquote>
-<p>1.notify随机唤醒一个线程。<br>2.notify不释放锁，必须执行完synchronize方法或语句才会释放锁。<br>3.join内部调用wait实现，具有释放锁的特点</p>
+<p>1.notify随机唤醒一个线程。<br>2.notify不释放锁，必须执行完synchronized方法或语句才会释放锁。<br>3.join内部调用wait实现，具有释放锁的特点</p>
 </blockquote>
 <h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>lock<br>unlock<br>Condition<br>Condition.await<br>Condition.signal<br>Condition.signalAll</p>
 <blockquote>
@@ -445,20 +490,20 @@
 </li>
 </ol>
 <ul>
-<li><p>2.1 synchronized同步方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">synchronized</span> <span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject==<span class="keyword">null</span>) &#123;</span><br><span class="line">			myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>2.1 synchronizedd同步方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function">synchronizedd <span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject==<span class="keyword">null</span>) &#123;</span><br><span class="line">			myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>同步方法获取实例时需要频繁加锁，效率太低。</p>
 </blockquote>
 </li>
-<li><p>2.2 synchronized同步方法块</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject!=<span class="keyword">null</span>) &#123;	</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (Myobject_lazy.class) &#123;</span><br><span class="line">				myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>2.2 synchronizedd同步方法块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject!=<span class="keyword">null</span>) &#123;	</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			synchronizedd (Myobject_lazy.class) &#123;</span><br><span class="line">				myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>可能有多个线程同时进入else语句块，依旧不能保持单例的状态。</p>
 </blockquote>
 </li>
 <li><p>2.3 DCL双检查锁机制</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject!=<span class="keyword">null</span>) &#123;	</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">synchronized</span> (Myobject_lazy.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (myobject==<span class="keyword">null</span>) &#123;</span><br><span class="line">					myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Myobject_lazy</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Myobject_lazy myobject;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">Myobject_lazy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Myobject_lazy <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (myobject!=<span class="keyword">null</span>) &#123;	</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			synchronizedd (Myobject_lazy.class) &#123;</span><br><span class="line">				<span class="keyword">if</span> (myobject==<span class="keyword">null</span>) &#123;</span><br><span class="line">					myobject = <span class="keyword">new</span> Myobject_lazy();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> myobject;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>即使多个线程同时进入else语句块，但是在后续的同步语句中无法通过if语句的检查。</p>
 </blockquote>
@@ -484,9 +529,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程/" rel="tag"># 线程</a>
-          
             <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
           
         </div>
       
@@ -606,8 +651,6 @@
                     
                       
                     
-                      
-                    
                     <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -677,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发访问"><span class="nav-number">2.</span> <span class="nav-text">并发访问</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程通信"><span class="nav-number">3.</span> <span class="nav-text">线程通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">4.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantReadWriteLock"><span class="nav-number">5.</span> <span class="nav-text">ReentrantReadWriteLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式与多线程"><span class="nav-number">6.</span> <span class="nav-text">单例模式与多线程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">2.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程和线程的概念"><span class="nav-number">2.1.</span> <span class="nav-text">进程和线程的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用多线程"><span class="nav-number">2.1.1.</span> <span class="nav-text">使用多线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全"><span class="nav-number">2.1.2.</span> <span class="nav-text">线程安全</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态"><span class="nav-number">2.2.</span> <span class="nav-text">线程状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发访问"><span class="nav-number">3.</span> <span class="nav-text">并发访问</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized同步方法"><span class="nav-number">3.0.1.</span> <span class="nav-text">synchronized同步方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized同步语句块"><span class="nav-number">3.0.2.</span> <span class="nav-text">synchronized同步语句块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized其他对象"><span class="nav-number">3.0.3.</span> <span class="nav-text">synchronized其他对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized-Class"><span class="nav-number">3.0.4.</span> <span class="nav-text">synchronized Class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.0.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#线程通信"><span class="nav-number">4.</span> <span class="nav-text">线程通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">5.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantReadWriteLock"><span class="nav-number">6.</span> <span class="nav-text">ReentrantReadWriteLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式与多线程"><span class="nav-number">7.</span> <span class="nav-text">单例模式与多线程</span></a></li></div>
             
 
           </div>
