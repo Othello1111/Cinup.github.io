@@ -108,25 +108,34 @@
 
 
 
-  <meta name="description" content="简介一些Java虚拟机的的知识，图片均来源于网络。">
+  <meta name="description" content="简介Java虚拟机的相关知识，图片均来源于网络。参考资料&amp;lt;深入理解Java虚拟机&amp;gt;第二版。  更新于2019.3.7，合并所有文章。">
 <meta name="keywords" content="java,jvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java虚拟机">
+<meta property="og:title" content="深入理解Java虚拟机">
 <meta property="og:url" content="http://yoursite.com/2019/03/02/java-jvm/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介一些Java虚拟机的的知识，图片均来源于网络。">
+<meta property="og:description" content="简介Java虚拟机的相关知识，图片均来源于网络。参考资料&amp;lt;深入理解Java虚拟机&amp;gt;第二版。  更新于2019.3.7，合并所有文章。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/jvm.png">
 <meta property="og:image" content="http://yoursite.com/images/jvm_start.png">
 <meta property="og:image" content="http://yoursite.com/images/jvm_mem.png">
+<meta property="og:image" content="http://yoursite.com/images/java_object.png">
+<meta property="og:image" content="http://yoursite.com/images/java_object_1.png">
+<meta property="og:image" content="http://yoursite.com/images/java_object_2.png">
+<meta property="og:image" content="http://yoursite.com/images/class_load.png">
 <meta property="og:image" content="http://yoursite.com/images/jvm_mem_1.png">
 <meta property="og:image" content="http://yoursite.com/images/jvm_thread_1.png">
 <meta property="og:image" content="http://yoursite.com/images/jvm_thread_2.png">
 <meta property="og:image" content="http://yoursite.com/images/sort.png">
-<meta property="og:updated_time" content="2019-03-04T08:13:31.370Z">
+<meta property="og:image" content="http://yoursite.com/images/gc_1.png">
+<meta property="og:image" content="http://yoursite.com/images/gc_2.png">
+<meta property="og:image" content="http://yoursite.com/images/gc_3.png">
+<meta property="og:image" content="http://yoursite.com/images/gc_4.png">
+<meta property="og:image" content="http://yoursite.com/images/gc_5.png">
+<meta property="og:updated_time" content="2019-03-07T11:01:08.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java虚拟机">
-<meta name="twitter:description" content="简介一些Java虚拟机的的知识，图片均来源于网络。">
+<meta name="twitter:title" content="深入理解Java虚拟机">
+<meta name="twitter:description" content="简介Java虚拟机的相关知识，图片均来源于网络。参考资料&amp;lt;深入理解Java虚拟机&amp;gt;第二版。  更新于2019.3.7，合并所有文章。">
 <meta name="twitter:image" content="http://yoursite.com/images/jvm.png">
 
 
@@ -144,7 +153,7 @@
   };
 </script>
 
-  <title>Java虚拟机 | 我的博客</title>
+  <title>深入理解Java虚拟机 | 我的博客</title>
   
 
 
@@ -326,7 +335,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java虚拟机
+          <h1 class="post-title" itemprop="name headline">深入理解Java虚拟机
               
             
           </h1>
@@ -368,7 +377,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-04 16:13:31" itemprop="dateModified" datetime="2019-03-04T16:13:31+08:00">2019-03-04</time>
+                <time title="修改时间：2019-03-07 19:01:08" itemprop="dateModified" datetime="2019-03-07T19:01:08+08:00">2019-03-07</time>
               
             
           </span>
@@ -419,34 +428,128 @@
       
 
       
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>一些Java虚拟机的的知识，图片均来源于网络。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Java虚拟机的相关知识，图片均来源于网络。参考资料&lt;深入理解Java虚拟机&gt;第二版。</p>
+<ul>
+<li>更新于2019.3.7，合并所有文章。</li>
+</ul>
 <a id="more"></a>
 <h2 id="Java跨平台的原理"><a href="#Java跨平台的原理" class="headerlink" title="Java跨平台的原理"></a>Java跨平台的原理</h2><center><img src="/images/jvm.png" alt="jvm"></center>
 
+<center>图1</center>
 
-
-<p>Java源代码(.Java)被编译成Java字节码文件(.class)，字节码文件由不同平台下Java虚拟机(JVM)来解释运行。</p>
+<p>Java源代码(.java)被编译成Java字节码文件(.class)，字节码文件由不同平台下Java虚拟机(JVM)来解释运行。</p>
 <p>所以从根本上讲，真正跨平台的是Java虚拟机。</p>
 <h2 id="JVM启动顺序"><a href="#JVM启动顺序" class="headerlink" title="JVM启动顺序"></a>JVM启动顺序</h2><center><img src="/images/jvm_start.png" alt="jvm_start"></center>
 
-<h2 id="JVM内存结构"><a href="#JVM内存结构" class="headerlink" title="JVM内存结构"></a>JVM内存结构</h2><center><img src="/images/jvm_mem.png" alt="jvm_start"></center>
+<center>图2</center>
+
+<h2 id="JVM内存结构"><a href="#JVM内存结构" class="headerlink" title="JVM内存结构"></a>JVM内存结构</h2><p>Java虚拟机在执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据结区域。</p>
+<center><img src="/images/jvm_mem.png" alt="jvm_start"></center>
+
+<center>图3</center>
 
 <ul>
-<li>方法区<br>方法区(Method Area)存放了要加载的类的信息(如类名、修饰符等)、静态变量、构造函数、final定义的常量、类中的字段和方法等信息。方法区是线程共享的，在一定条件下也会被GC。当方法区超过它允许的大小时，就会抛出OutOfMemory:PermGen Space异常。<br>运行时常量池(Runtime Constant Pool)是方法区的一部分，用于存储编译器生成的常量和引用。</li>
-<li>堆<br>堆区(Heap)由所有线程共享，在虚拟机启动时创建。<br>堆区主要用于存放对象实例及数组，所有new出来的对象都存储在该区域。</li>
+<li>程序计数器<br>程序计数器(Program Counter Register)是JVM中一块较小的内存区域，它可以看作是当前线程所执行的字节码的行号指示器，保存着当前线程执行的虚拟机字节码指令的内存地址。如果执行的是Native方法，那么程序计数器的值为空。<br>Java多线程的实现，其实是通过线程间的轮流切换并分配处理器执行时间的方式来实现的，在任何时刻，处理器都只会执行一个线程中的指令。<br>在多线程场景下，为了保证线程切换回来后，还能恢复到原先状态，找到原先执行的指令，所以每个线程都会设立一个程序计数器，并且各个线程之间不会互相影响，程序计数器为”线程私有”的内存区域。</li>
 <li>虚拟机栈<br>虚拟机栈(Java Virtual Machine Stacks)和线程是紧密联系的，每创建一个线程时就会对应创建一个Java栈，所以Java栈也是”线程私有”的内存区域，这个栈中又会对应包含多个栈帧，每调用一个方法时就会往栈中创建并压入一个栈帧，栈帧是用来存储方法数据和部分过程结果的数据结构，每一个方法从调用到最终返回结果的过程，就对应一个栈帧从入栈到出栈的过程。</li>
 <li>本地方法栈<br>本地方法栈(Native Method Stack)和虚拟机栈的作用相似，不过虚拟机栈是为Java方法服务的，而本地方法栈是为Native方法服务的。</li>
-<li>程序计数器<br>程序计数器(Program Counter Register)是JVM中一块较小的内存区域，保存着当前线程执行的虚拟机字节码指令的内存地址。<br>Java多线程的实现，其实是通过线程间的轮流切换并分配处理器执行时间的方式来实现的，在任何时刻，处理器都只会执行一个线程中的指令。<br>在多线程场景下，为了保证线程切换回来后，还能恢复到原先状态，找到原先执行的指令，所以每个线程都会设立一个程序计数器，并且各个线程之间不会互相影响，程序计数器为”线程私有”的内存区域。</li>
+<li>堆<br>堆区(Heap)由所有线程共享，在虚拟机启动时创建。<br>堆区主要用于存放对象实例及数组，所有new出来的对象都存储在该区域。</li>
+<li>方法区<br>方法区(Method Area)存放了要加载的类的信息(如类名、修饰符等)、静态变量、构造函数、final定义的常量、类中的字段和方法等信息。方法区是线程共享的，在一定条件下也会被GC。当方法区超过它允许的大小时，就会抛出OutOfMemory:PermGen Space异常。<br>运行时常量池(Runtime Constant Pool)是方法区的一部分，用于存储编译器生成的常量和引用。</li>
 </ul>
-<h3 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h3><p>每一个线程有一个工作内存。工作内存和主存独立。工作内存存放主存中变量的值的拷贝。</p>
+<h2 id="对象创建过程"><a href="#对象创建过程" class="headerlink" title="对象创建过程"></a>对象创建过程</h2><h3 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h3><ol>
+<li><p>判断对象对应的类是否加载、链接、初始化</p>
+</li>
+<li><p>为对象分配内存</p>
+<p>类加载完成后，接着会在Java堆中划分一块内存分配给对象。内存分配根据Java堆是否规整，有两种方式:</p>
+</li>
+</ol>
+<ul>
+<li>指针碰撞:如果Java堆的内存是规整，即所有用过的内存放在一边，而空闲的的放在另一边。分配内存时将位于中间的指针指示器向空闲的内存移动一段与对象大小相等的距离，这样便完成分配内存工作。</li>
+<li>空闲列表:如果Java堆的内存不是规整的，则需要由虚拟机维护一个列表来记录那些内存是可用的，这样在分配的时候可以从列表中查询到足够大的内存分配给对象，并在分配后更新列表记录。</li>
+</ul>
+<ol start="3">
+<li><p>处理并发安全问题</p>
+<p>创建对象是一个非常频繁的操作，所以需要解决并发的问题，有两种方式:</p>
+</li>
+</ol>
+<ul>
+<li>对分配内存空间的动作进行同步处理，比如在虚拟机采用CAS算法并配上失败重试的方式保证更新操作的原子性。</li>
+<li>每个线程在Java堆中预先分配一小块内存，这块内存称为本地线程分配缓冲(Thread Local Allocation Buffer)简写为TLAB，线程需要分配内存时，就在对应线程的TLAB上分配内存，当线程中的TLAB用完并且被分配到了新的TLAB时，这时候才需要同步锁定。通过-XX:+/-UserTLAB参数来设定虚拟机是否使用TLAB。</li>
+</ul>
+<ol start="4">
+<li><p>初始化分配到的内存空间<br>将分配到的内存，除了对象头都初始化为零值。</p>
+</li>
+<li><p>设置对象的对象头<br>将对象的所属类、对象的HashCode和对象的GC分代年龄等数据存储在对象的对象头中。</p>
+</li>
+<li><p>执行init方法进行初始化<br>执行init方法，初始化对象的成员变量、调用类的构造方法，这样一个对象就被创建了出来。</p>
+</li>
+</ol>
+<h3 id="对象的堆内布局"><a href="#对象的堆内布局" class="headerlink" title="对象的堆内布局"></a>对象的堆内布局</h3><p>对象创建完毕，并且已经在Java堆中分配了内存，以HotSpot虚拟机为例，对象在堆内存的布局分为三个区域，分别是对象头(Header)、实例数据(Instance Data)、对齐填充(Padding)。</p>
+<center><img src="/images/java_object.png" alt="Java_object"></center>
+
+<center>图4</center>
+
+<ul>
+<li>对象头:对象头包括两部分信息分别是Mark World和元数据指针，Mark World用于存储对象运行时的数据，比如HashCode、锁状态标志、GC分代年龄等。而元数据指针用于指向方法区的中目标类的类型信息，通过元数据指针可以确定对象的具体类型。</li>
+<li>实例数据:用于存储对象中的各种类型的字段信息(包括从父类继承来的)。</li>
+<li>对齐填充:对齐填充不一定存在，起到了占位符的作用，没有特别的含义。</li>
+</ul>
+<h3 id="对象的访问"><a href="#对象的访问" class="headerlink" title="对象的访问"></a>对象的访问</h3><p>建立对象之后，就可以通过栈上的引用数据操作堆上的对象了，对象的访问方式主要有两种。</p>
+<p>通过句柄访问对象</p>
+<center><img src="/images/java_object_1.png" alt="java_object_1"></center>
+
+<center>图5</center>
+
+<p>使用句柄访问的好处是引用中存储的是稳定的句柄地址，对象被移动是只会改变句柄中实例数据的值，而不需要改变引用的值。</p>
+<p>直接指针访问对象</p>
+<center><img src="/images/java_object_2.png" alt="java_object_1"></center>
+
+<center>图6</center>
+
+<p>直接指针访问的好处是访问速度快，只需要一次指针定位即可。</p>
+<h2 id="类加载过程"><a href="#类加载过程" class="headerlink" title="类加载过程"></a>类加载过程</h2><center><img src="/images/class_load.png" alt="class_load"></center>
+
+<center>图7</center>
+
+<ol>
+<li>装载:查找和导入class文件，</li>
+<li>链接:把类的二进制数据合并到JRE中，<br>2.1 校验:检查载入class文件数据的正确性，<br>2.2 准备:给类的静态变量分配存储空间，<br>2.3 解析:将符号引用转成直接引用，</li>
+<li>初始化:对类的静态变量，静态代码块执行初始化操作。</li>
+</ol>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流，</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构，</li>
+<li>在Java堆中生成一个代表这个类的<strong>java.lang.Class</strong>对象，作为方法区这些数据的访问入口。</li>
+</ol>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><p>虚拟机如果不检查输入的字节流，对其完全信任的话，很可能会因为载入了有害的字节流而导致系统奔溃。</p>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>准备阶段是正式为类变量分配并设置类变量初始值的阶段，这些内存都将在方法区中进行分配，需要说明的是:这时候进行内存分配的仅包括类变量(被static修饰的变量)，而不包括实例变量，实例变量将会在对象实例化时随着对象一起分配在Java堆中;这里所说的初始值“通常情况”是数据类型的零值。</p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>解析阶段是指虚拟机将常量池中的符号引用替换为直接引用的过程。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><ol>
+<li>使用new关键字实例化对象的时候，读取或设置一个类的静态字段(被final修饰、已在编译期把结果放入常量池的静态字段除外)的时候，以及调用一个类的静态方法的时候。</li>
+<li>使用<strong>java.lang.reflect</strong>包的方法对类进行反射调用的时候，如果类没有进行过初始化，则需要先触发其初始化。</li>
+<li>当初始化一个类的时候，如果发现其父类还没有进行过初始化，则需要先触发其父类的初始化。</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类(包含main()方法的那个类)，虚拟机会先初始化这个主类。</li>
+</ol>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ol>
+<li>Bootstrap ClassLoader:将存放于<strong>&lt;JAVA_HOME&gt;\lib</strong>目录中的，或者被<strong>-Xbootclasspath</strong>参数所指定的路径中的，并且是虚拟机识别的(仅按照文件名识别，如 rt.jar 名字不符合的类库即使放在lib目录中也不会被加载)类库加载到虚拟机内存中。</li>
+<li>Extension ClassLoader:将<strong>&lt;JAVA_HOME&gt;\lib\ext</strong>目录下的，或者被<strong>java.ext.dirs</strong>系统变量所指定的路径中的所有类库加载。</li>
+<li>Application ClassLoader:负责加载用户类路径(ClassPath)上所指定的类库。</li>
+</ol>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p><strong>工作过程</strong>:如果一个类加载器接收到了类加载的请求，它首先把这个请求委托给他的父类加载器去完成，每个层次的类加载器都是如此，因此所有的加载请求都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求(它在搜索范围中没有找到所需的类)时，子加载器才会尝试自己去加载。</p>
+<h2 id="内存模型"><a href="#内存模型" class="headerlink" title="内存模型"></a>内存模型</h2><p>每一个线程有一个工作内存，工作内存和主存独立。工作内存存放主存中变量的值的拷贝。</p>
 <center><img src="/images/jvm_mem_1.png" alt="jvm_mem_1"></center>
 
-<p>Java线程之间的通信由Java内存模型本文简称为JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见。</p>
+<center>图8</center>
+
+<p>Java线程之间的通信由Java内存模型(JMM)控制，JMM决定一个线程对共享变量的写入何时对另一个线程可见。</p>
 <p>从抽象的角度来看，JMM定义了线程和主内存之间的抽象关系:线程之间的共享变量存储在主内存(main memory)中，每个线程都有一个私有的本地内存(local memory)，本地内存中存储了该线程以读/写共享变量的副本。本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了缓存，写缓冲区，寄存器以及其他的硬件和编译器优化。Java内存模型的抽象示意图如下:  </p>
 <center><img src="/images/jvm_thread_1.png" alt="jvm_thread_1"></center>
 
+<center>图9</center>
+
 <p>从上图来看，线程A与线程B之间如要通信的话，必须要经历下面2个步骤:<br>首先，线程A把本地内存A中更新过的共享变量刷新到主内存中去。<br>然后，线程B到主内存中去读取线程A之前已更新过的共享变量。<br>下面通过示意图来说明这两个步骤:</p>
 <center><img src="/images/jvm_thread_2.png" alt="jvm_thread_1"></center>
+
+<center>图10</center>
 
 <p>如上图所示，本地内存A和B有主内存中共享变量x的副本。假设初始时，这三个内存中的x值都为0。线程A在执行时，把更新后的x值(假设值为1)临时存放在自己的本地内存A中。当线程A和线程B需要通信时，线程A首先会把自己本地内存中修改后的x值刷新到主内存中，此时主内存中的x值变为了1。随后，线程B到主内存中去读取线程A更新后的x值，此时线程B的本地内存的x值也变为了1。<br>从整体来看，这两个步骤实质上是线程A在向线程B发送消息，而且这个通信过程必须要经过主内存。JMM通过控制主内存与每个线程的本地内存之间的交互，来为Java程序员提供内存可见性保证。</p>
 <h3 id="重排序"><a href="#重排序" class="headerlink" title="重排序"></a>重排序</h3><p>在执行程序时为了提高性能，编译器和处理器常常会对指令做重排序。重排序分三种类型:</p>
@@ -458,8 +561,66 @@
 <p>从Java源代码到最终实际执行的指令序列，会分别经历下面三种重排序:</p>
 <center><img src="/images/sort.png" alt="sort"></center>
 
+<center>图11</center>
+
 <p>上述的1属于编译器重排序，2和3属于处理器重排序。这些重排序都可能会导致多线程程序出现内存可见性问题。对于编译器，JMM的编译器重排序规则会禁止特定类型的编译器重排序(不是所有的编译器重排序都要禁止)。</p>
 <p>对于处理器重排序，JMM的处理器重排序规则会要求Java编译器在生成指令序列时，插入特定类型的内存屏障(memory barriers，intel称之为memory fence)指令，通过内存屏障指令来禁止特定类型的处理器重排序(不是所有的处理器重排序都要禁止)。<br>JMM属于语言级的内存模型，它确保在不同的编译器和不同的处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。</p>
+<h2 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h2><p>垃圾收集器(Garbage Collection)，通常被称作GC。<br>GC主要做了两个工作，一个是内存的划分和分配，一个是对垃圾进行回收。<br>关于对垃圾进行回收，被引用的对象是存活的对象，而不被引用的对象是死亡的对象也就是垃圾，在对垃圾进行回收前，GC要先标记出垃圾，那么如何标记呢，目前有两种垃圾标记算法，分别是引用计数算法和根搜索算法。</p>
+<h3 id="垃圾标记算法"><a href="#垃圾标记算法" class="headerlink" title="垃圾标记算法"></a>垃圾标记算法</h3><h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><ul>
+<li>强引用:当我们new一个对象时就是创建了一个具有强引用的对象，如果一个对象具有强引用，垃圾收集器就绝不会回收它。Java虚拟机宁愿抛出OutOfMemoryError异常，使程序异常终止，也不会回收具有强引用的对象来解决内存不足的问题。</li>
+<li>软引用:如果一个对象只具有软引用，当内存不够时，会回收这些对象的内存，回收后如果还是没有足够的内存，就会抛出OutOfMemoryError异常。Java提供了SoftReference类来实现软引用。</li>
+<li>弱引用:弱引用比起软引用具有更短的生命周期，垃圾收集器一旦发现了只具有弱引用的对象，不管当前内存是否足够，都会回收它的内存。Java提供了WeakReference类来实现弱引用。</li>
+<li>虚引用:虚引用并不会决定对象的生命周期，如果一个对象仅持有虚引用，这就和没有任何引用一样，在任何时候都可能被垃圾收集器回收。一个只具有虚引用的对象，被垃圾收集器回收时会收到一个系统通知，这也是虚引用的主要作用。Java提供了PhantomReference类来实现虚引用。</li>
+</ul>
+<h4 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h4><p>引用计数算法的基本思想就是每个对象都有一个引用计数器，当对象在某处被引用的时候，它的引用计数器就加1，引用失效时就减1。当引用计数器中的值变为0，则该对象就不能被使用成了垃圾。<br>目前主流的Java虚拟机没有选择引用计数算法来为垃圾标记，主要原因是引用计数算法没有解决对象之间相互循环引用的问题。</p>
+<h4 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h4><p>这个算法的基本思想就是选定一些对象作为GC Roots，并组成根对象集合，然后从这些作为GC Roots的对象作为起始点，向下进行搜索，如果目标对象到GC Roots是连接着的，我们则称该目标对象是可达的，如果目标对象不可达则说明目标对象是可以被回收的对象。</p>
+<center><img src="/images/gc_1.png" alt="gc_1"></center>
+
+<center>图12</center>
+
+<h3 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h3><h4 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h4><p>标记-清除算法(Mark-Sweep)是一种常见的基础垃圾收集算法，它将垃圾收集分为两个阶段:<br>标记阶段:标记出可以回收的对象。<br>清除阶段:回收被标记的对象所占用的空间。</p>
+<center><img src="/images/gc_2.png" alt="gc_1"></center>
+
+<center>图13</center>
+
+<p>标记-清除算法主要有两个缺点，一个是标记和清除的效率都不高，另一个从上图就可以看出来，就是容易产生大量不连续的内存碎片，碎片太多可能会导致后续没有足够的连续内存分配给较大的对象，从而提前触发新的一次垃圾收集动作。</p>
+<h4 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h4><p>为了解决标记-清除算法的效率不高的问题，产生了复制算法。它把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾收集时，遍历当前使用的区域，把存活对象复制到另外一个区域中，最后将当前使用的区域的可回收的对象进行回收。</p>
+<center><img src="/images/gc_3.png" alt="gc_1"></center>
+
+<center>图14</center>
+
+<p>这种算法每次都对整个半区进行内存回收，不需要考虑内存碎片的问题，代价就是使用内存为原来的一半。<br>复制算法的效率跟存活对象的数目多少有很大的关系，如果存活对象很少，复制算法的效率就会很高。由于绝大多数对象的生命周期很短，并且这些生命周期很短的对象都存于新生代中，所以复制算法被广泛应用于新生代中。</p>
+<h4 id="标记-压缩算法"><a href="#标记-压缩算法" class="headerlink" title="标记-压缩算法"></a>标记-压缩算法</h4><p>在新生代中可以使用复制算法，但是在老年代就不能选择复制算法了，因为老年代的对象存活率会较高，这样会有较多的复制操作，导致效率变低。标记-清除算法可以应用在老年代中，但是它效率不高，在内存回收后容易产生大量内存碎片。因此就出现了一种标记-压缩算法(Mark-Compact)算法，与标记-清除算法不同的是，在标记可回收的对象后将所有存活的对象压缩到内存的一端，使他们紧凑的排列在一起，然后对端边界以外的内存进行回收。回收后，已用和未用的内存都各自一边。</p>
+<center><img src="/images/gc_4.png" alt="gc_1"></center>
+
+<center>图15</center>
+
+<p>标记-压缩算法解决了标记-清除算法效率低和容易产生大量内存碎片的问题，它被广泛的应用于老年代中。</p>
+<h4 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h4><p><strong>堆内内存划分</strong></p>
+<center><img src="/images/gc_5.png" alt="gc_1"></center>
+
+<center>图16</center>
+
+<ol>
+<li><p>新生代:主要是用来存放新生的对象。一般占据堆的1/3空间。</p>
+<p>新生代又分为 Eden区、ServivorFrom、ServivorTo三个区。</p>
+</li>
+</ol>
+<ul>
+<li>Eden:Java新对象的出生地(如果新创建的对象占用内存很大，则直接分配到老年代)。当Eden区内存不够的时候就会触发MinorGC，对新生代区进行一次垃圾回收。</li>
+<li>ServivorFrom:保留了一次MinorGC过程中的幸存者。</li>
+<li>ServivorTo:上一次GC的幸存者，作为这一次GC的被扫描者。</li>
+<li>MinorGC的过程:MinorGC采用复制算法。首先，把Eden和ServivorFrom区域中存活的对象复制到ServicorTo区域(如果有对象的年龄以及达到了老年的标准，则赋值到老年代区)，同时把这些对象的年龄+1(如果ServicorTo不够位置了就放到老年区)；然后，清空Eden和ServicorFrom中的对象；最后，ServicorTo和ServicorFrom互换，原ServicorTo成为下一次GC时的ServicorFrom区。</li>
+</ul>
+<ol start="2">
+<li>老年代:主要存放应用程序中生命周期长的内存对象。<br>老年代的对象比较稳定，所以MajorGC不会频繁执行。在进行MajorGC前一般都先进行了一次MinorGC，使得有新生代的对象晋身入老年代，导致空间不够用时才触发。当无法找到足够大的连续空间分配给新创建的较大对象时也会提前触发一次MajorGC进行垃圾回收腾出空间。</li>
+</ol>
+<ul>
+<li>MajorGC的过程:首先扫描一次所有老年代，标记出存活的对象，然后回收没有标记的对象。<br>MajorGC会产生内存碎片，为了减少内存损耗，我们一般需要进行合并或者标记出来方便下次直接分配。</li>
+</ul>
+<ol start="3">
+<li>永久代<br>指内存的永久保存区域，主要存放Class和Meta(元数据)的信息,Class在被加载的时候被放入永久区域. 它和和存放实例的区域不同,GC不会在主程序运行期对永久区域进行清理。所以这也导致了永久代的区域会随着加载的Class的增多而胀满，最终抛出OOM异常。<br>在Java8中，永久代已经被移除，被一个称为“元数据区”(元空间)的区域所取代。<br>元空间的本质和永久代类似，都是对JVM规范中方法区的实现。不过元空间与永久代之间最大的区别在于:元空间并不在虚拟机中，而是使用本地内存。因此，默认情况下，元空间的大小仅受本地内存限制。类的元数据放入 native memory，字符串池和类的静态变量放入Java堆中。这样可以加载多少类的元数据就不再由MaxPermSize控制，而由系统的实际可用空间来控制。</li>
+</ol>
 
       
     </div>
@@ -505,8 +666,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/02/java-class/" rel="prev" title="Java类加载机制与反射">
-                Java类加载机制与反射 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/07/java-collection/" rel="prev" title="Java集合类">
+                Java集合类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -579,7 +740,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -635,7 +796,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -671,7 +836,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java跨平台的原理"><span class="nav-number">2.</span> <span class="nav-text">Java跨平台的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM启动顺序"><span class="nav-number">3.</span> <span class="nav-text">JVM启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存结构"><span class="nav-number">4.</span> <span class="nav-text">JVM内存结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存模型"><span class="nav-number">4.1.</span> <span class="nav-text">内存模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重排序"><span class="nav-number">4.2.</span> <span class="nav-text">重排序</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java跨平台的原理"><span class="nav-number">2.</span> <span class="nav-text">Java跨平台的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM启动顺序"><span class="nav-number">3.</span> <span class="nav-text">JVM启动顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存结构"><span class="nav-number">4.</span> <span class="nav-text">JVM内存结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象创建过程"><span class="nav-number">5.</span> <span class="nav-text">对象创建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的创建"><span class="nav-number">5.1.</span> <span class="nav-text">对象的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的堆内布局"><span class="nav-number">5.2.</span> <span class="nav-text">对象的堆内布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象的访问"><span class="nav-number">5.3.</span> <span class="nav-text">对象的访问</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载过程"><span class="nav-number">6.</span> <span class="nav-text">类加载过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">6.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">6.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">6.3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">6.4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">6.5.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类加载器"><span class="nav-number">6.6.</span> <span class="nav-text">类加载器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">6.7.</span> <span class="nav-text">双亲委派模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存模型"><span class="nav-number">7.</span> <span class="nav-text">内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重排序"><span class="nav-number">7.1.</span> <span class="nav-text">重排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC"><span class="nav-number">8.</span> <span class="nav-text">GC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾标记算法"><span class="nav-number">8.1.</span> <span class="nav-text">垃圾标记算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#引用"><span class="nav-number">8.1.1.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用计数算法"><span class="nav-number">8.1.2.</span> <span class="nav-text">引用计数算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根搜索算法"><span class="nav-number">8.1.3.</span> <span class="nav-text">根搜索算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收算法"><span class="nav-number">8.2.</span> <span class="nav-text">垃圾回收算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法"><span class="nav-number">8.2.1.</span> <span class="nav-text">标记-清除算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法"><span class="nav-number">8.2.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-压缩算法"><span class="nav-number">8.2.3.</span> <span class="nav-text">标记-压缩算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分代收集算法"><span class="nav-number">8.2.4.</span> <span class="nav-text">分代收集算法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
