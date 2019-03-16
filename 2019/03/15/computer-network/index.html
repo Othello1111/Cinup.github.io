@@ -108,20 +108,25 @@
 
 
 
-  <meta name="description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新">
+  <meta name="description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新 2019.3.16更新停止等待协议">
 <meta name="keywords" content="网络,计算机基础知识">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络">
 <meta property="og:url" content="http://yoursite.com/2019/03/15/computer-network/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新">
+<meta property="og:description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新 2019.3.16更新停止等待协议">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/udp.png">
 <meta property="og:image" content="http://yoursite.com/images/tcp.png">
-<meta property="og:updated_time" content="2019-03-15T13:50:36.589Z">
+<meta property="og:image" content="http://yoursite.com/images/stopwait_1.png">
+<meta property="og:image" content="http://yoursite.com/images/stopwait_2.png">
+<meta property="og:image" content="http://yoursite.com/images/stopwait_3.png">
+<meta property="og:image" content="http://yoursite.com/images/stopwait_4.png">
+<meta property="og:image" content="http://yoursite.com/images/stopwait_5.png">
+<meta property="og:updated_time" content="2019-03-16T13:08:05.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络">
-<meta name="twitter:description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新">
+<meta name="twitter:description" content="简介整理计算机网络的相关知识，参考资料&amp;lt;参考资料计算机网络&amp;gt;第七版。  2019.3.15第一次更新 2019.3.16更新停止等待协议">
 <meta name="twitter:image" content="http://yoursite.com/images/udp.png">
 
 
@@ -346,12 +351,24 @@
                 
               
 
-              <time title="创建时间：2019-03-15 20:38:24 / 修改时间：21:50:36" itemprop="dateCreated datePublished" datetime="2019-03-15T20:38:24+08:00">2019-03-15</time>
+              <time title="创建时间：2019-03-15 20:38:24" itemprop="dateCreated datePublished" datetime="2019-03-15T20:38:24+08:00">2019-03-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-16 21:08:05" itemprop="dateModified" datetime="2019-03-16T21:08:05+08:00">2019-03-16</time>
               
             
           </span>
@@ -405,6 +422,7 @@
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>整理计算机网络的相关知识，参考资料&lt;参考资料计算机网络&gt;第七版。</p>
 <ul>
 <li>2019.3.15第一次更新</li>
+<li>2019.3.16更新停止等待协议</li>
 </ul>
 <a id="more"></a>
 <h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2><p>运输层是网络层之上的协议，网络层提供主机到主机的通信，然而实质上发生通信的实体并不是主机与主机，而是主机上的程序，而运输层就是提供进程到进程间的通信。</p>
@@ -475,19 +493,92 @@
 <li>2个字节源端口</li>
 <li>2个字节目的端口</li>
 <li>4个字节序号</li>
+</ul>
+<p>在一个TCP连接中传送的字节流中每一个字节都被按顺序编号，整个字节流的起始序号必须在连接建立时设置。首部中的序号字段值指本报文段所发送的数据的第一个字节号。</p>
+<ul>
 <li>4个字节确认号</li>
+</ul>
+<p>期望收到对方下一个报文段的第一个字节序号。表明该序号之前的数据都已经收到。</p>
+<ul>
 <li>4位的数据偏移</li>
+</ul>
+<p>TCP报文段<strong>数据段</strong>起始距TCP报文段起始处的距离，即TCP首部的长度。</p>
+<ul>
 <li>6位的保留字段</li>
 <li>1位URG</li>
-<li>1位ACK</li>
-<li>1位PSH</li>
-<li>1位PST</li>
-<li>1位SYN</li>
-<li>1位FIN</li>
-<li>4个字节窗口大小</li>
-<li>2个字节检验和</li>
-<li>2个字节紧急指针</li>
 </ul>
+<p>当URG=1，告诉系统此报文中有紧急数据，紧急数据会被插入到报文数据的最前面优先处理。</p>
+<ul>
+<li>1位ACK</li>
+</ul>
+<p>当ACK=1时，确认号字段才有效。建立连接后，ACK必须为1。</p>
+<ul>
+<li>1位PSH</li>
+</ul>
+<p>接收方收到PSH为1的数据报时，会尽快交付给应用程序。</p>
+<ul>
+<li>1位PST</li>
+</ul>
+<p>用来重新建立连接或拒绝打开一个连接。</p>
+<ul>
+<li>1位SYN</li>
+</ul>
+<p>SYN=1 ACK=0表明是一个连接请求报文段。SYN=1，ACK=1表明是一个响应请求报文段。</p>
+<ul>
+<li>1位FIN</li>
+</ul>
+<p>用来释放连接，当FIN=1连接释放请求报文段。</p>
+<ul>
+<li>4个字节窗口大小</li>
+</ul>
+<p>指明自己接收窗口的大小。</p>
+<ul>
+<li><p>2个字节检验和</p>
+</li>
+<li><p>2个字节紧急指针</p>
+</li>
+</ul>
+<p>指明报文段中的紧急数据的字节数。</p>
+<h4 id="TCP可靠传输的实现"><a href="#TCP可靠传输的实现" class="headerlink" title="TCP可靠传输的实现"></a>TCP可靠传输的实现</h4><p>IP层是尽最大努力服务的协议，因此TCP下面的网络所提供的是不可靠的服务。TCP需要采取适当的措施使通信变得可靠。</p>
+<p>理想的传输条件是:</p>
+<ul>
+<li>传输信道的质量是很好的，不会产生任何差错</li>
+<li>无论以多快的数据发送数据，接收方都能及时处理</li>
+</ul>
+<p>但是实际的情况往往不具备上面的条件，因此可以使用一些可靠的协议来克服这个缺陷</p>
+<ul>
+<li>当数据出现差错时，接收方可以告知发送方重发</li>
+<li>当数据来不及处理时，接收方也可以告知发送方降速</li>
+</ul>
+<h5 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h5><p>停止等待协议是一个简单的协议，发送方发送完一个分组后必须收到接收方的回复才开始继续发下一分组。</p>
+<ul>
+<li>无差错</li>
+</ul>
+<p>无差错是最理想的情况</p>
+<center><img src="/images/stopwait_1.png" alt="stopwait_1"></center>
+
+<ul>
+<li>出现差错</li>
+</ul>
+<p>若接收方发现报文出现差错，就丢弃该报文，发送方在规定时间内没有收到确认就会自动重传。</p>
+<center><img src="/images/stopwait_2.png" alt="stopwait_2"></center>
+
+<ul>
+<li>确认丢失</li>
+</ul>
+<p>若接受方的确认在网络中丢失，发送方没有收到确认就会启动超时重传，这时接受方应该丢弃相同的报文，同时向发送方再次发送确认。</p>
+<center><img src="/images/stopwait_3.png" alt="stopwait_3"></center>
+
+<ul>
+<li>确认迟到</li>
+</ul>
+<p>若接受方的确认在网络中阻塞，发送方启动了超时重传，接收方也重发了确认，发送方可能会陆续收到重复的确认，应该直接丢弃。</p>
+<center><img src="/images/stopwait_4.png" alt="stopwait_4"></center>
+
+<p>使用确认重传机制，确实可以在不可靠的网络上实现可靠的传输，但是缺点是信道利用率太低。</p>
+<center><img src="/images/stopwait_5.png" alt="stopwait_5"></center>
+
+<p>真正利用信道的时间很少，大多数时间都是在等待数据和确认的到达。</p>
 
       
     </div>
@@ -707,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运输层"><span class="nav-number">2.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">2.1.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">2.2.</span> <span class="nav-text">UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP首部格式"><span class="nav-number">2.2.1.</span> <span class="nav-text">UDP首部格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">2.3.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP首部格式"><span class="nav-number">2.3.1.</span> <span class="nav-text">TCP首部格式</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运输层"><span class="nav-number">2.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">2.1.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">2.2.</span> <span class="nav-text">UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP首部格式"><span class="nav-number">2.2.1.</span> <span class="nav-text">UDP首部格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">2.3.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP首部格式"><span class="nav-number">2.3.1.</span> <span class="nav-text">TCP首部格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP可靠传输的实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">TCP可靠传输的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#停止等待协议"><span class="nav-number">2.3.2.1.</span> <span class="nav-text">停止等待协议</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
