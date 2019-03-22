@@ -120,7 +120,7 @@
 <meta property="og:image" content="http://yoursite.com/images/copy.png">
 <meta property="og:image" content="http://yoursite.com/images/shallowcopy.png">
 <meta property="og:image" content="http://yoursite.com/images/deepcopy.png">
-<meta property="og:updated_time" content="2019-03-16T08:46:16.698Z">
+<meta property="og:updated_time" content="2019-03-22T13:15:18.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java知识点">
 <meta name="twitter:description" content="简介整理一些Java中的知识，分为语法，区别，方式，和理解四个板块。 语法模块主要用来强化对语法的记忆； 区别模块主要用来分辨一些相近的概念； 方式模块主要用来记录一些使用方法； 理解模块主要用来探究语言的原理。  2019.3.1第一次更新 2019.3.3第二次更新，添加语法模块。">
@@ -365,7 +365,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-16 16:46:16" itemprop="dateModified" datetime="2019-03-16T16:46:16+08:00">2019-03-16</time>
+                <time title="修改时间：2019-03-22 21:15:18" itemprop="dateModified" datetime="2019-03-22T21:15:18+08:00">2019-03-22</time>
               
             
           </span>
@@ -551,7 +551,7 @@
 <p>是有效的。注意ElementType[]是数组，说明Target的值可以有多个。</p>
 <p>Retention注解是用来声明生命范围的，</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Retention &#123;</span><br><span class="line">    <span class="function">RetentionPolicy <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> RetentionPolicy &#123;</span><br><span class="line">    <span class="comment">//注解只存在于源代码中，编译时就被抛弃</span></span><br><span class="line">    SOURCE,</span><br><span class="line">    <span class="comment">//注解编译后会被记录在class文件中，但是不要在运行时保留</span></span><br><span class="line">    CLASS,</span><br><span class="line">    <span class="comment">//注解编译时会被记录在class文件中，同时运行时也被保留，所以可以被反射读取到</span></span><br><span class="line">    RUNTIME</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> RetentionPolicy &#123;</span><br><span class="line">    <span class="comment">//注解只存在于源代码中，编译时就被抛弃</span></span><br><span class="line">    SOURCE,</span><br><span class="line">    <span class="comment">//注解编译后会被记录在class文件中，但是不要求在运行时保留</span></span><br><span class="line">    CLASS,</span><br><span class="line">    <span class="comment">//注解编译时会被记录在class文件中，同时运行时也被保留，所以可以被反射读取到</span></span><br><span class="line">    RUNTIME</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p><strong>a+=b和a=a+b</strong>的区别</p>
 <p>当a和b的数据类型不一样时，a+=b会隐式进行强制类型转换。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">0x0fffffff</span>;</span><br><span class="line">System.out.println((<span class="keyword">short</span>)(a+b));</span><br><span class="line">a += b;</span><br><span class="line">System.out.println(a);</span><br><span class="line">System.out.println((<span class="keyword">short</span>)b);</span><br><span class="line">System.out.println(b);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line">(<span class="keyword">short</span>)(a+b)<span class="number">0</span></span><br><span class="line">a+=b        <span class="number">0</span></span><br><span class="line">(<span class="keyword">short</span>)b   -<span class="number">1</span></span><br><span class="line">b           <span class="number">268435455</span></span><br></pre></td></tr></table></figure>
@@ -746,8 +746,8 @@
 <li>获取属性</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取public属性</span></span><br><span class="line"><span class="function">Field <span class="title">getField</span><span class="params">(String name)</span>    </span></span><br><span class="line"><span class="function">Field[] <span class="title">getFields</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"><span class="comment">//获取所有属性</span></span></span><br><span class="line"><span class="function">Field <span class="title">getDeclaredField</span><span class="params">(String name)</span>  </span></span><br><span class="line"><span class="function">Field[] <span class="title">getDelcaredFields</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p><strong>什么是编译器常量，编译期常量的使用风险</strong></p>
-<p>编译器常量是指在编译期间就可以确定的值，如</p>
+<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p><strong>什么是编译期常量，编译期常量的使用风险</strong></p>
+<p>编译期常量是指在编译期间就可以确定的值，如</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">int</span> a = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 <p>非编译器常量是值在运行期间才能确定的值，如String。</p>
 <p>编译期常量的使用风险:A类定义了一个编译期常量，B类中使用了这个常量，两者都进行了编译。然后修改了A中常量的值，重新进行编译时，系统只会重新编译改动的A类，而旧代码B没有重新编译。导致了B中常量值与A中常量值的不一致。</p>
@@ -789,7 +789,7 @@
 <p>泛型(Generic type )就是使类型参数化，例如定义一个方法</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">addPerson</span><span class="params">(Person p)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个方法只接收具体类型的对象，但是如果使用了的泛型，就可以把具体的类型参数化，用一个广泛的表示所有类的类型来定义。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">add</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span>&lt;T&gt; <span class="title">add</span><span class="params">(T t)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Java实现泛型的机制时类型擦除。</p>
 <p>所谓类型擦除，是指通过类型参数合并，将泛型类型实例关联到同一份字节码上。编译器只为泛型类型生成一份字节码，并将其实例关联到这份字节码上。类型擦除的关键在于从泛型类型中清除类型参数的相关信息，并且在必要的时候添加类型检查和类型转换的方法。</p>
 <p>所以泛型其实只是编译时的检查，并不提供运行时的支持，所以通过反射依旧可以绕过泛型。</p>
