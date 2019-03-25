@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新">
+  <meta name="description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新 2019.3.35第二次更新，添加平衡二叉树的旋转">
 <meta name="keywords" content="数据结构,树">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构--树">
 <meta property="og:url" content="http://yoursite.com/2019/03/22/data-structure/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新">
+<meta property="og:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新 2019.3.35第二次更新，添加平衡二叉树的旋转">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/tree.png">
 <meta property="og:image" content="http://yoursite.com/images/2tree.png">
@@ -125,10 +125,16 @@
 <meta property="og:image" content="http://yoursite.com/images/lr.png">
 <meta property="og:image" content="http://yoursite.com/images/rl.png">
 <meta property="og:image" content="http://yoursite.com/images/rr.png">
-<meta property="og:updated_time" content="2019-03-22T11:55:17.691Z">
+<meta property="og:image" content="http://yoursite.com/images/ll.png">
+<meta property="og:image" content="http://yoursite.com/images/bll.png">
+<meta property="og:image" content="http://yoursite.com/images/lr.png">
+<meta property="og:image" content="http://yoursite.com/images/nblr.png">
+<meta property="og:image" content="http://yoursite.com/images/blr-1.png">
+<meta property="og:image" content="http://yoursite.com/images/blr-2.png">
+<meta property="og:updated_time" content="2019-03-25T13:51:30.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--树">
-<meta name="twitter:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新">
+<meta name="twitter:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新 2019.3.35第二次更新，添加平衡二叉树的旋转">
 <meta name="twitter:image" content="http://yoursite.com/images/tree.png">
 
 
@@ -353,12 +359,24 @@
                 
               
 
-              <time title="创建时间：2019-03-22 13:27:03 / 修改时间：19:55:17" itemprop="dateCreated datePublished" datetime="2019-03-22T13:27:03+08:00">2019-03-22</time>
+              <time title="创建时间：2019-03-22 13:27:03" itemprop="dateCreated datePublished" datetime="2019-03-22T13:27:03+08:00">2019-03-22</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-25 21:51:30" itemprop="dateModified" datetime="2019-03-25T21:51:30+08:00">2019-03-25</time>
               
             
           </span>
@@ -413,6 +431,7 @@
 <p>推荐<a href="https://visualgo.net/zh/" target="_blank" rel="noopener">数据结构和算法可视化网站</a>。</p>
 <ul>
 <li>2019.3.22第一次更新</li>
+<li>2019.3.35第二次更新，添加平衡二叉树的旋转</li>
 </ul>
 <a id="more"></a>
 <h2 id="定义和概念"><a href="#定义和概念" class="headerlink" title="定义和概念"></a>定义和概念</h2><p>树是一种一对多的具有层次关系的数据结构，它在离散数学中定义非常抽象，但是实际表示出来又是十分直观的，直接看简单的例子:</p>
@@ -550,19 +569,54 @@
 <h3 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h3><p>二叉排序树虽然在查找上表现优异，但是也还存在着缺点。在树构建时，若插入的值基本有序，那么二叉排序树会  退化成链表，这时查找的时间复杂度会变成最差的情况，原因就是树的左右子树不平衡，由此在二叉排序树的基础上加入了平衡的条件。</p>
 <p>平衡二叉树是一颗自平衡的二叉排序树，它要求每个结点左右子树的高度差不超过1。</p>
 <h4 id="失衡"><a href="#失衡" class="headerlink" title="失衡"></a>失衡</h4><p>在二叉树的插入和删除过程中可能会造成二叉树的失衡，失衡的情况有4种:</p>
-<p>在左子树的左子树添加2结点导致失衡</p>
+<ul>
+<li>LL型:在左子树的左子树添加2结点导致8结点失衡</li>
+</ul>
 <center><img src="/images/ll.png" alt="ll"></center>
 
-<p>在左子树的右子树添加6结点导致失衡</p>
+<ul>
+<li>LR型:在左子树的右子树添加6结点导致8结点失衡</li>
+</ul>
 <center><img src="/images/lr.png" alt="lr"></center>
 
-<p>在右子树的左子树添加6结点导致失衡</p>
+<ul>
+<li>RL:型在右子树的左子树添加6结点导致5结点失衡</li>
+</ul>
 <center><img src="/images/rl.png" alt="rl"></center>
 
-<p>在右子树的右子树添加10结点导致失衡</p>
+<ul>
+<li>RR型:在右子树的右子树添加10结点导致5结点失衡</li>
+</ul>
 <center><img src="/images/rr.png" alt="rr"></center>
 
-<h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4>
+<h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><p>在上面4种失衡的情况中，LL和RR是对称的，LR和RL也是对称的。</p>
+<p>因此处理失衡的方法就需要2种:LL型和RR型的处理方法，LR型和RL型的处理方法。</p>
+<p>对于LL型或者RR型失衡的二叉树，只需要一次旋转，将失衡点向失衡的方向选择即可。</p>
+<p>如上面的第一个LL型可以旋转8结点，这样5结点就会代替8结点的位置，同时7结点会脱落成为8结点的左孩子结点。</p>
+<center><img src="/images/ll.png" alt="ll"></center>
+
+
+
+<center><img src="/images/bll.png" alt="bll"></center>  
+
+<p>对于LR型或者RL型失衡的二叉树，如果使用上面的方法旋转得到的结果仍然是失衡的。</p>
+<center><img src="/images/lr.png" alt="lr"></center>
+
+<center><img src="/images/nblr.png" alt="nblr"></center>
+
+<p><br></p>
+<p>因此LR型或者RL型失衡的二叉树需要其他的旋转方法:</p>
+<ul>
+<li>首先旋转5结点，用7结点代替5结点的位置，同时6结点会脱落成为5结点的右孩子结点</li>
+</ul>
+<center><img src="/images/blr-1.png" alt="blr-1"></center>
+
+<ul>
+<li>再旋转7结点，用7结点代替8结点的位置</li>
+</ul>
+<center><img src="/images/blr-2.png" alt="blr-2"></center>
+
+<h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2>
       
     </div>
 
@@ -785,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义和概念"><span class="nav-number">2.</span> <span class="nav-text">定义和概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">3.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树遍历"><span class="nav-number">3.2.</span> <span class="nav-text">二叉树遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#满二叉树"><span class="nav-number">3.3.</span> <span class="nav-text">满二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全二叉树"><span class="nav-number">3.4.</span> <span class="nav-text">完全二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">3.5.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的查找"><span class="nav-number">3.5.1.</span> <span class="nav-text">二叉排序树的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的插入"><span class="nav-number">3.5.2.</span> <span class="nav-text">二叉排序树的插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的删除"><span class="nav-number">3.5.3.</span> <span class="nav-text">二叉排序树的删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">3.6.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#失衡"><span class="nav-number">3.6.1.</span> <span class="nav-text">失衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#旋转"><span class="nav-number">3.6.2.</span> <span class="nav-text">旋转</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义和概念"><span class="nav-number">2.</span> <span class="nav-text">定义和概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">3.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉树遍历"><span class="nav-number">3.2.</span> <span class="nav-text">二叉树遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#满二叉树"><span class="nav-number">3.3.</span> <span class="nav-text">满二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全二叉树"><span class="nav-number">3.4.</span> <span class="nav-text">完全二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二叉排序树"><span class="nav-number">3.5.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的查找"><span class="nav-number">3.5.1.</span> <span class="nav-text">二叉排序树的查找</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的插入"><span class="nav-number">3.5.2.</span> <span class="nav-text">二叉排序树的插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉排序树的删除"><span class="nav-number">3.5.3.</span> <span class="nav-text">二叉排序树的删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">3.6.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#失衡"><span class="nav-number">3.6.1.</span> <span class="nav-text">失衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#旋转"><span class="nav-number">3.6.2.</span> <span class="nav-text">旋转</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B树"><span class="nav-number">4.</span> <span class="nav-text">B树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-number">5.</span> <span class="nav-text">B+树</span></a></li></ol></div>
             
 
           </div>
