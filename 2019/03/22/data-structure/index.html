@@ -148,7 +148,7 @@
 <meta property="og:image" content="http://yoursite.com/images/dlrb-4.png">
 <meta property="og:image" content="http://yoursite.com/images/dlrb-5.png">
 <meta property="og:image" content="http://yoursite.com/images/dlrb-6.png">
-<meta property="og:updated_time" content="2019-03-28T12:59:39.871Z">
+<meta property="og:updated_time" content="2019-03-28T13:14:21.920Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--树">
 <meta name="twitter:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新 2019.3.35第二次更新，添加平衡二叉树的旋转 2019.3.27第三次更新，添加红黑树以及红黑树的添加过程 2019.3.28第四次更新，添加红黑树的删除过程">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 20:59:39" itemprop="dateModified" datetime="2019-03-28T20:59:39+08:00">2019-03-28</time>
+                <time title="修改时间：2019-03-28 21:14:21" itemprop="dateModified" datetime="2019-03-28T21:14:21+08:00">2019-03-28</time>
               
             
           </span>
@@ -669,7 +669,7 @@
 </table>
 <h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>红黑树是一种特殊的平衡二叉树，它的平衡条件不是左右子树的高度，它的结点额外带有颜色属性且必须满足条件(平衡条件):</p>
 <ul>
-<li>红黑树的结点为黑色或者红色</li>
+<li>结点为黑色或者红色</li>
 <li>根结点必须是黑色</li>
 <li>红色结点的孩子结点必须是黑色</li>
 <li>每个叶子结点(空结点)是黑色的，这个叶子结点并不是真正的叶子结点，而是真正叶子结点下一个黑色NULL结点，只有颜色，并没有值</li>
@@ -738,7 +738,7 @@
 <li>红色结点只有一个包含黑色结点的孩子</li>
 </ul>
 <p><img src="/images/notexist-2.png" alt="notexist-2"></p>
-<p>两个孩子结点=叶子结点+只有一个孩孑结点，由于上面的分析不存在只有一个子树的红色结点(红色不允许违法条件4，黑色违反条件5)。</p>
+<p>两个孩子结点=叶子结点+只有一个孩孑结点，由于上面的分析不存在只有一个子树的红色结点(红色违反条件4，黑色违反条件5)。</p>
 <p>对于删除的红色结点只有1种可能</p>
 <ul>
 <li>真正的叶子结点</li>
