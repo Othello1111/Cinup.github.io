@@ -148,7 +148,7 @@
 <meta property="og:image" content="http://yoursite.com/images/dlrb-4.png">
 <meta property="og:image" content="http://yoursite.com/images/dlrb-5.png">
 <meta property="og:image" content="http://yoursite.com/images/dlrb-6.png">
-<meta property="og:updated_time" content="2019-03-28T13:14:21.920Z">
+<meta property="og:updated_time" content="2019-03-28T13:19:55.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--树">
 <meta name="twitter:description" content="简介树相关概念整理。 推荐数据结构和算法可视化网站。  2019.3.22第一次更新 2019.3.35第二次更新，添加平衡二叉树的旋转 2019.3.27第三次更新，添加红黑树以及红黑树的添加过程 2019.3.28第四次更新，添加红黑树的删除过程">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 21:14:21" itemprop="dateModified" datetime="2019-03-28T21:14:21+08:00">2019-03-28</time>
+                <time title="修改时间：2019-03-28 21:19:55" itemprop="dateModified" datetime="2019-03-28T21:19:55+08:00">2019-03-28</time>
               
             
           </span>
@@ -749,7 +749,7 @@
 <li>叶子结点</li>
 <li>非叶结点</li>
 </ul>
-<p>上面列举了黑色只有一个孩子时不可能的情况，因此，可能的情况只有1种可能(左右算一种)</p>
+<p>上面列举了黑色只有一个孩子时不可能的情况，因此，可能的情况只有1种可能(左右镜像算一种)</p>
 <p><img src="/images/exist-1.png" alt="exist-1"></p>
 <p>处理方式是直接使用左/右孩子替代并将其颜色修改成黑色即可，因为路径中少一个红色结点，并不会对平衡造成影响。</p>
 <p>最复杂的是删除黑色叶子结点的情况，首先对于叶子结点是左还是右并不影响操作，因为它们是镜像的，所以以左为例。</p>
@@ -767,7 +767,7 @@
 <li>sib=B<ul>
 <li>leftof(sib)=B&amp;&amp;rightof(sib)=B</li>
 <li>leftof(sib)=R&amp;&amp;rightof(sib)=B</li>
-<li>leftof(sib)=(R|B)&amp;&amp;rightof(sib)=R</li>
+<li>rightof(sib)=R</li>
 </ul>
 </li>
 </ul>
