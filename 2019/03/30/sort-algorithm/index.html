@@ -123,7 +123,7 @@
 <meta property="og:image" content="http://yoursite.com/images/quicksort.gif">
 <meta property="og:image" content="http://yoursite.com/images/mergesort.gif">
 <meta property="og:image" content="http://yoursite.com/images/countingsort.gif">
-<meta property="og:updated_time" content="2019-03-30T14:34:10.171Z">
+<meta property="og:updated_time" content="2019-03-30T14:44:34.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法">
 <meta name="twitter:description" content="简介被面试官问到排序算法，回答得不是很好，整理一下。如果文字说明不清晰可以看动图演示。">
@@ -351,7 +351,7 @@
                 
               
 
-              <time title="创建时间：2019-03-30 10:05:49 / 修改时间：22:34:10" itemprop="dateCreated datePublished" datetime="2019-03-30T10:05:49+08:00">2019-03-30</time>
+              <time title="创建时间：2019-03-30 10:05:49 / 修改时间：22:44:34" itemprop="dateCreated datePublished" datetime="2019-03-30T10:05:49+08:00">2019-03-30</time>
             
 
             
@@ -477,7 +477,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i := <span class="built_in">len</span>(data) - <span class="number">1</span>; i &gt; <span class="number">0</span>; i-- &#123;</span><br><span class="line">   <span class="comment">//根结点和最后一个结点交换位置</span></span><br><span class="line">   data[<span class="number">0</span>], data[i] = data[i], data[<span class="number">0</span>]</span><br><span class="line">   <span class="comment">//调整堆</span></span><br><span class="line">   adjust(data, <span class="number">0</span>, i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在时间复杂度上，因为n个元素堆排序的循环次数为n-1次，调整次数为堆的高度，调整次数和为log(n-1)+log(n-2)+…+log2=log(n-1)!，所以时间复杂度近似为O(nlogn)。</p>
 <p><img src="/images/heapsort.gif" alt="heapsort"></p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序使用二分法的方式来进行排序，首先选择一个中间值，以这个值位置为中间值划分出左右两个区间，再对这个区间再次进行划分。</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>快速排序使用二分法的方式来进行排序，首先选择一个中间值，以这个中间值划分出左右两个区间，再对这两个区间再次进行划分。</p>
 <p>假设有如下的数组</p>
 <p>(3，4，2，8，5，7，1)</p>
 <p>第一轮排序，选择3为中间值</p>
