@@ -132,7 +132,7 @@
 <meta property="og:image" content="http://yoursite.com/images/process.png">
 <meta property="og:image" content="http://yoursite.com/images/list.png">
 <meta property="og:image" content="http://yoursite.com/images/list_1.png">
-<meta property="og:updated_time" content="2019-04-09T14:01:04.968Z">
+<meta property="og:updated_time" content="2019-06-20T05:28:14.692Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解Linux内核">
 <meta name="twitter:description" content="简介这篇是&amp;lt;深入理解Linux内核&amp;gt;第三版的读书笔记，会在阅读完一部分后进行更新。 注:本文代码是参阅Linux2.6.11的，因此会与现在3.0以上的版本有些许出入。  2019.2.25更新第一章内存寻址，对应&amp;lt;深入理解Linux&amp;gt;第二章内容。   2019.2.28完成分段。  2019.3.2完成硬件中的分页。  2019.3.16完成Linux中的分页。   20">
@@ -377,7 +377,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-09 22:01:04" itemprop="dateModified" datetime="2019-04-09T22:01:04+08:00">2019-04-09</time>
+                <time title="修改时间：2019-06-20 13:28:14" itemprop="dateModified" datetime="2019-06-20T13:28:14+08:00">2019-06-20</time>
               
             
           </span>
@@ -727,7 +727,7 @@
 
 <p>正在使用的页目录的物理地址被存放在控制寄存器<strong>cr3</strong>中。</p>
 <p>所以转换公式为:</p>
-<center>物理地址=[[cr3+Director<em>4]&amp;0xFFFFF000+Table</em>4]&amp;0xFFFFF000+Offset</center>
+<center>物理地址=[[cr3+Director*4]&amp;0xFFFFF000+Table*4]&amp;0xFFFFF000+Offset</center>
 
 <p><strong>注:[x]表示x地址上的值。</strong></p>
 <h5 id="拓展分页"><a href="#拓展分页" class="headerlink" title="拓展分页"></a>拓展分页</h5><p>拓展分页允许页框大小为<strong>4MB</strong>，因此需要22位Offset。</p>
@@ -1157,8 +1157,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
