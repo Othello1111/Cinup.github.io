@@ -431,17 +431,17 @@
 <h3 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h3><p>gcc是GNU编译器套件(GNU Compiler Collection)包括C、C++、Objective-C、Fortran、Java、Ada和Go语言的前端，也包括了这些语言的库(如libstdc++、libgcj等等)。</p>
 <h3 id="GCC工作过程"><a href="#GCC工作过程" class="headerlink" title="GCC工作过程"></a>GCC工作过程</h3><p><img src="/images/compile.png" alt="编译过程.png"></p>
 <h4 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h4><p>预处理阶段，处理宏定义和include的文件，去除注释，不会对语法进行检查。<br>gcc预处理命令为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-E</span> <span class="selector-tag">hello</span><span class="selector-class">.c</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.i</span></span><br></pre></td></tr></table></figure>
-<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>编译阶段，编译器主要做词法分析、语法分析、语义分析等，在检查无错误后，把代码翻译成汇编语言。<br>gcc编译命令为：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-S</span> <span class="selector-tag">hello</span><span class="selector-class">.i</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.s</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E hello.c -o hello.i</span><br></pre></td></tr></table></figure>
+<h4 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h4><p>编译阶段，编译器主要做词法分析、语法分析、语义分析等，在检查无错误后，把代码翻译成汇编语言。<br>gcc编译命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -S hello.i -o hello.s</span><br></pre></td></tr></table></figure></p>
 <h4 id="汇编"><a href="#汇编" class="headerlink" title="汇编"></a>汇编</h4><p>汇编阶段，生成目标代码(二进制文本形式)。<br>gcc汇编命令为：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">gcc</span> <span class="selector-tag">-c</span> <span class="selector-tag">hello</span><span class="selector-class">.s</span> <span class="selector-tag">-o</span> <span class="selector-tag">hello</span><span class="selector-class">.o</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c hello.s -o hello.o</span><br></pre></td></tr></table></figure>
 <h4 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h4><p>链接阶段，生成可执行代码。链接分为两种，一种是静态链接，另外一种是动态链接。使用静态链接的好处是，依赖的动态链接库较少，对动态链接库的版本不会很敏感，具有较好的兼容性；缺点是生成的程序比较大。使用动态链接的好处是，生成的程序比较小，占用较少的主存。</p>
 <ol>
 <li>gcc -I(大写i)  dir 指定头文件路径</li>
 <li>gcc -l library 指定库名</li>
 <li>gcc -L dir 指定库路径</li>
 </ol>
-<p>上述过程也可以一次性完成<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc  hello<span class="selector-class">.c</span> -o hello</span><br></pre></td></tr></table></figure></p>
+<p>上述过程也可以一次性完成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc  hello.c -o hello</span><br></pre></td></tr></table></figure></p>
 <h2 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h2><p>经过编译，源代码已经被编译器翻译成计算机可理解的可执行文件，并存放在磁盘中。程序生命周期的最后一步就是运行可执行程序。</p>
 <p>在类Unix系统上运行可执行程序，只需要在shell中输入程序的文件名即可。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@Cp:~/test/c $ ./hello </span><br><span class="line">hello world</span><br></pre></td></tr></table></figure>
@@ -612,8 +612,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
